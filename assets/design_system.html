@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html class="scroll-smooth overflow-x-hidden" lang="pt-br">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Design System & Showcase | Lançamento Dra. Fernanda</title>
+    <meta content="Living design system for Lançamento do Livro da Dra. Fernanda. Unified patterns, premium aesthetics, and responsive layout structures." name="description"/>
+    
+    <!-- Fonts: Inter & Instrument Serif from luxury-law-firm-11 assets -->
+    <link href="luxury-law-firm-11.aura.build/assets/6247690e95446626_css2.css" rel="stylesheet"/>
+    <!-- Webflow Stylesheet from karasbook.webflow.io assets -->
+    <link href="karasbook.webflow.io/assets/735df6cba923ddde_karasbook.webflow.43ad82704.css" rel="stylesheet" type="text/css"/>
+    <!-- Tailwind CSS (Tailwind 3.4.17) from luxury-law-firm-11 assets -->
+    <script src="luxury-law-firm-11.aura.build/assets/176e894661aa9cdc_3.4.17"></script>
+    <!-- Lucide Icons UMD from luxury-law-firm-11 assets -->
+    <script src="luxury-law-firm-11.aura.build/assets/187a756625c5ce74_lucide.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Instrument Serif', 'serif'],
+                        mono: ['Courier New', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            gold: '#D4B47A', // Nova Cor de Destaque (Dourado)
+                            goldglow: '#E3CFA8', // Variação clara do dourado
+                            dark: '#0E2347', // Novo Fundo (Deep Navy)
+                            panel: '#1A3566', // Novo Panel Dark (Mid Blue)
+                            border: 'rgba(244, 246, 250, 0.08)', // Usando o Branco Gelo (#F4F6FA) nas bordas
+                            
+                            // Novo Acento e Variações Azuis (substituindo rosa e roxo)
+                            purple: '#2E86E8', // Acento Principal (Vibrant Blue)
+                            pink: '#6FA8F5', // Acento Secundário (Light Blue)
+                            blue: '#1A3566',
+                            light: '#F4F6FA' // Branco Gelo
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'marquee': 'marquee 40s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                          '0%, 100%': { transform: 'translateY(0)' },
+                          '50%': { transform: 'translateY(-10px)' },
+                        },
+                        marquee: {
+                          '0%': { transform: 'translateX(0)' },
+                          '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS resets for Webflow and Tailwind coexistence */
+        body {
+            background-color: #0E2347; /* Nova cor de fundo */
+            color: #F4F6FA; /* Branco gelo */
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            padding-top: 0 !important;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* --- Scroll Entrance Reveals --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: blur(6px);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* --- Premium Glassmorphism --- */
+        .glass-panel {
+            background: linear-gradient(180deg, rgba(212, 180, 122, 0.03) 0%, rgba(244, 246, 250, 0.01) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(244, 246, 250, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+        }
+        .glass-panel:hover {
+            border-color: rgba(212, 180, 122, 0.2);
+            background: linear-gradient(180deg, rgba(212, 180, 122, 0.05) 0%, rgba(244, 246, 250, 0.02) 100%);
+        }
+
+        /* --- Ambient Background Grid --- */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(244, 246, 250, 0.025) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(244, 246, 250, 0.025) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0E2347; }
+        ::-webkit-scrollbar-thumb { background: #1A3566; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4B47A; }
+
+        /* --- Text Gradients --- */
+        .text-gradient {
+            background: linear-gradient(to bottom right, #F4F6FA, #D4B47A 70%, #E3CFA8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-purple {
+            background: linear-gradient(135deg, #F4F6FA, #6FA8F5 60%, #2E86E8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Sleek Tech Inputs --- */
+        .tech-input {
+            background: rgba(244, 246, 250, 0.02);
+            border: 1px solid rgba(244, 246, 250, 0.08);
+            transition: all 0.3s ease;
+        }
+        .tech-input:focus {
+            background: rgba(212, 180, 122, 0.05);
+            border-color: #D4B47A;
+            outline: none;
+            box-shadow: 0 0 15px rgba(212, 180, 122, 0.15);
+        }
+
+        /* --- 3D Floating Book Mockup --- */
+        .perspective-container {
+            perspective: 1200px;
+        }
+        .book-wrapper-3d {
+            transform: rotateY(-18deg) rotateX(8deg) rotateZ(-2deg);
+            transform-style: preserve-3d;
+            box-shadow: -15px 20px 30px rgba(0, 0, 0, 0.6), 0 0 40px rgba(46, 134, 232, 0.1);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s;
+        }
+        .book-wrapper-3d:hover {
+            transform: rotateY(-8deg) rotateX(4deg) rotateZ(0deg) scale(1.03);
+            box-shadow: -20px 25px 40px rgba(0, 0, 0, 0.7), 0 0 50px rgba(46, 134, 232, 0.2);
+        }
+
+        /* --- Webflow Button Overrides to Blue Accent --- */
+        .main-cta {
+            background: linear-gradient(249deg, #2E86E8, #6FA8F5) !important;
+            border: none !important;
+            color: #F4F6FA !important;
+        }
+        .main-cta:hover {
+            background: linear-gradient(249deg, #1E65B8, #2E86E8) !important;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(46, 134, 232, 0.3) !important;
+        }
+
+        /* --- CSS Animated Tooltip --- */
+        .tooltip-trigger:hover .tooltip-box {
+            opacity: 1;
+            transform: translate(-50%, -8px) scale(1);
+            pointer-events: auto;
+        }
+
+        /* --- Document Sections Scroll Spy & Anchors --- */
+        .anchor-section {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-brand-gold selection:text-brand-dark">
+
+    <!-- Fixed Structural Grids and Blur Blobs -->
+    <div class="fixed inset-0 pointer-events-none -z-10 bg-grid"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[320px] md:w-[900px] h-[500px] bg-brand-purple/15 rounded-full blur-[100px] md:blur-[140px] -z-10 animate-pulse-slow"></div>
+    <div class="fixed bottom-10 right-10 w-[450px] h-[450px] bg-brand-pink/5 rounded-full blur-[120px] -z-10"></div>
+    <div class="fixed top-1/3 left-10 w-[300px] h-[300px] bg-brand-gold/5 rounded-full blur-[100px] -z-10"></div>
+
+    <!-- Global Top Glass Navigation -->
+    <nav class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] max-w-6xl z-50 transition-all duration-300">
+        <div class="glass-panel rounded-full p-2 pl-5 pr-5 flex items-center justify-between shadow-2xl">
+            <div class="flex items-center gap-3">
+                <div class="w-3.5 h-3.5 bg-brand-gold rounded-sm rotate-45 shadow-[0_0_12px_rgba(212,180,122,0.8)] animate-[spin_10s_linear_infinite]"></div>
+                <div class="flex flex-col">
+                    <span class="text-xs font-serif tracking-widest text-white leading-none">DRA. FERNANDA</span>
+                    <span class="text-[8px] uppercase tracking-[0.25em] text-brand-pink leading-none mt-0.5 font-bold">Lançamento Editorial</span>
+                </div>
+            </div>
+            <div class="hidden lg:flex items-center gap-6">
+                <a class="text-[10px] font-bold uppercase tracking-wider text-brand-light/50 hover:text-brand-pink transition-colors" href="#hero">Hero</a>
+                <a class="text-[10px] font-bold uppercase tracking-wider text-brand-light/50 hover:text-brand-pink transition-colors" href="#typography">Tipografia</a>
+                <a class="text-[10px] font-bold uppercase tracking-wider text-brand-light/50 hover:text-brand-pink transition-colors" href="#colors">Cores</a>
+                <a class="text-[10px] font-bold uppercase tracking-wider text-brand-light/50 hover:text-brand-pink transition-colors" href="#components">Componentes</a>
+                <a class="text-[10px] font-bold uppercase tracking-wider text-brand-light/50 hover:text-brand-pink transition-colors" href="#icons">Ícones</a>
+                <a class="text-[10px] font-bold uppercase tracking-wider text-brand-light/50 hover:text-brand-pink transition-colors" href="#animations">Animações</a>
+            </div>
+            <div>
+                <a class="bg-white text-brand-dark px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-brand-gold hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.15)] inline-block" href="luxury-law-firm-11.aura.build/index.html">
+                    Ver Site Principal
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="pt-28 md:pt-36 pb-24">
+
+        <!-- 1) Hero Section (First Fold Demonstration) -->
+        <section id="hero" class="anchor-section container mx-auto px-6 max-w-6xl mb-24 md:mb-32 relative">
+            <div class="reveal active grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Narrative Column -->
+                <div class="lg:col-span-7 text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-pink/20 bg-brand-purple/10 backdrop-blur-sm">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-brand-pink"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-pink"></span>
+                        </span>
+                        <span class="text-[9px] font-bold text-brand-pink tracking-widest uppercase">Lançamento Exclusivo • Dra. Fernanda</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif text-white tracking-tight leading-[1.05]">
+                        A Justiça em <br/>
+                        <span class="text-brand-pink italic pr-2">Páginas de</span>
+                        <span class="text-gradient">Ouro.</span>
+                    </h1>
+                    
+                    <div class="h-[1px] w-48 bg-gradient-to-r from-brand-gold/60 via-brand-pink/20 to-transparent"></div>
+                    
+                    <p class="text-sm md:text-base font-light text-brand-light/60 max-w-xl leading-relaxed">
+                        Uma obra prima literária que descortina os bastidores da advocacia de alta performance, estratégias de governança patrimonial e o verdadeiro legado jurídico corporativo. Adquira sua cópia autografada na pré-venda.
+                    </p>
+                    
+                    <!-- Buttons & CTAs Showcase in Hero -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <!-- Primary Conic Border Spinning Button -->
+                        <a class="group relative inline-flex items-center justify-center overflow-hidden rounded-full p-[1px] focus:outline-none" href="https://www.amazon.com/Confessions-Division-1-Athlete-Jim-Karas/dp/1638488517" target="_blank">
+                            <span class="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0E2347_0%,#D4B47A_50%,#0E2347_100%)]"></span>
+                            <span class="inline-flex h-full w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-brand-panel px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-3xl transition-all group-hover:bg-[#151515]">
+                                ADQUIRIR LIVRO
+                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold group-hover:translate-x-0.5 transition-transform"></i>
+                            </span>
+                        </a>
+
+                        <!-- Webflow Styled Gradient Button -->
+                        <a class="main-cta mb-0 w-button hover:scale-105 transition-transform" href="#typography" style="padding: 14px 28px; font-size: 10px; font-weight: bold; letter-spacing: 2px; border-radius: 9999px; line-height: 1;">
+                            EXPLORAR PROJETO
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Visual Column (Book Showcase & Testimonial) -->
+                <div class="lg:col-span-5 flex flex-col items-center justify-center">
+                    <div class="perspective-container relative w-full max-w-[320px] aspect-[3/4]">
+                        <!-- Ambient back glow for the book -->
+                        <div class="absolute inset-0 bg-brand-purple/10 blur-[50px] rounded-full pointer-events-none -z-10 animate-pulse-slow"></div>
+                        
+                        <!-- Floating Book image from Webflow files -->
+                        <div class="animate-float">
+                            <img alt="Capa do Livro Dra. Fernanda" class="book-wrapper-3d rounded-r-lg w-full max-w-[260px] mx-auto border-y border-r border-white/10" src="karasbook.webflow.io/assets/ec69fd8cb032a77b_606e23369e7d8a4ba4238fdd_bookh.webp"/>
+                        </div>
+
+                        <!-- Mini Testimonial Glass Overlay -->
+                        <div class="absolute -bottom-6 -left-6 md:-left-10 glass-panel rounded-2xl p-4 max-w-[220px] shadow-2xl reveal active transition-transform duration-500 hover:-translate-y-1">
+                            <div class="flex items-center gap-1 mb-1.5">
+                                <img alt="5 Estrelas" class="w-20 object-contain" src="karasbook.webflow.io/assets/443d7848d9aaf6c0_606e4c7eb1b4bc4ad2fbcfe8_stars.png"/>
+                            </div>
+                            <p class="text-[10px] italic text-brand-light/70 leading-relaxed mb-3">
+                                "Uma leitura cirúrgica e indispensável para líderes do mercado corporativo."
+                            </p>
+                            <div class="flex items-center gap-2">
+                                <img alt="Crítico" class="w-6 h-6 rounded-full object-cover border border-brand-gold/30" src="karasbook.webflow.io/assets/84c41e80d5ba378d_606e252904734d6777c9c78f_mcken.webp"/>
+                                <div>
+                                    <h4 class="text-[9px] font-bold text-white leading-none">Antigravity Review</h4>
+                                    <span class="text-[7px] text-brand-gold uppercase tracking-wider font-mono">Crítico Editorial</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2) Typography Section -->
+        <section id="typography" class="anchor-section container mx-auto px-6 max-w-6xl mb-24 md:mb-32">
+            <div class="mb-10 reveal">
+                <span class="text-brand-gold text-[10px] tracking-[0.25em] uppercase font-bold mb-2 block">Seção 01</span>
+                <h2 class="text-3xl md:text-5xl font-serif text-white tracking-tight">Tipografia & Escala</h2>
+                <div class="h-[1px] w-20 bg-brand-gold/30 mt-3"></div>
+            </div>
+
+            <!-- Specs Table Wrapper -->
+            <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 overflow-hidden reveal">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8 border-b border-white/5 pb-8">
+                    <div>
+                        <h4 class="text-xs uppercase tracking-widest text-brand-pink font-bold mb-2">Família Primária (Sans)</h4>
+                        <p class="text-xl font-bold font-sans text-white">Inter</p>
+                        <p class="text-[10px] text-brand-light/40 mt-1">Carregamento via Google Fonts CDN. Stack: Inter, sans-serif.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs uppercase tracking-widest text-brand-gold font-bold mb-2">Família Secundária (Serif)</h4>
+                        <p class="text-xl font-bold font-serif text-white italic pr-1">Instrument Serif</p>
+                        <p class="text-[10px] text-brand-light/40 mt-1">Carregamento via Google Fonts CDN. Stack: Instrument Serif, serif.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs uppercase tracking-widest text-brand-light/60 font-bold mb-2">Estratégia de Fonte</h4>
+                        <p class="text-sm text-brand-light/70">CSS assíncrono com a diretiva display=swap para evitar renderizações bloqueadas (FOUT).</p>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[700px]">
+                        <thead>
+                            <tr class="border-b border-white/10 text-[9px] uppercase tracking-widest text-brand-light/40 font-mono">
+                                <th class="py-4 pb-2 w-1/5">Papel Tipográfico</th>
+                                <th class="py-4 pb-2 w-2/5">Exemplo ao Vivo</th>
+                                <th class="py-4 pb-2 text-right w-2/5">Especificações Técnicas</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 font-sans">
+                            <!-- H1 -->
+                            <tr>
+                                <td class="py-5 text-xs font-mono text-brand-light/40 align-top">
+                                    Heading 1<br/>
+                                    <span class="text-[8px] text-brand-gold font-bold">h1 / title-lg</span>
+                                </td>
+                                <td class="py-5">
+                                    <h1 class="text-4xl sm:text-5xl font-serif text-white tracking-tight leading-[1.05]">
+                                        O Legado da <span class="text-white/40 italic">Estratégia</span> <span class="text-gradient">Jurídica.</span>
+                                    </h1>
+                                </td>
+                                <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
+                                    font-family: Instrument Serif (serif)<br/>
+                                    font-size: 60px (md) / 40px (sm) / 32px (xs)<br/>
+                                    font-weight: 400 | line-height: 1.05<br/>
+                                    letter-spacing: -0.025em | text-transform: none
+                                </td>
+                            </tr>
+                            <!-- H2 -->
+                            <tr>
+                                <td class="py-5 text-xs font-mono text-brand-light/40 align-top">
+                                    Heading 2<br/>
+                                    <span class="text-[8px] text-brand-gold font-bold">h2 / section-title</span>
+                                </td>
+                                <td class="py-5">
+                                    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight">
+                                        Advocacia de Alta Performance e <span class="text-brand-pink italic">Negócios</span>
+                                    </h2>
+                                </td>
+                                <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
+                                    font-family: Instrument Serif (serif)<br/>
+                                    font-size: 32px (md) / 24px (xs)<br/>
+                                    font-weight: 400 | line-height: 1.20<br/>
+                                    letter-spacing: -0.02em | text-transform: none
+                                </td>
+                            </tr>
+                            <!-- H3 -->
+                            <tr>
+                                <td class="py-5 text-xs font-mono text-brand-light/40 align-top">
+                                    Heading 3<br/>
+                                    <span class="text-[8px] text-brand-gold font-bold">h3 / card-title</span>
+                                </td>
+                                <td class="py-5">
+                                    <h3 class="text-lg md:text-xl font-serif text-white font-medium">Contratos & Governança Societária</h3>
+                                </td>
+                                <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
+                                    font-family: Instrument Serif (serif)<br/>
+                                    font-size: 20px | font-weight: 500<br/>
+                                    line-height: 1.30 | letter-spacing: normal
+                                </td>
+                            </tr>
+                            <!-- Body Large -->
+                            <tr>
+                                <td class="py-5 text-xs font-mono text-brand-light/40 align-top">
+                                    Body Large<br/>
+                                    <span class="text-[8px] text-brand-pink font-bold">body-lg</span>
+                                </td>
+                                <td class="py-5">
+                                    <p class="text-base text-brand-light/80 font-light leading-relaxed">
+                                        Estratégia patrimonial focada na preservação de valor e na blindagem de ativos para as próximas gerações.
+                                    </p>
+                                </td>
+                                <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
+                                    font-family: Inter (sans-serif)<br/>
+                                    font-size: 16px (1rem) | font-weight: 300<br/>
+                                    line-height: 1.625 (relaxed) | text-color: white-ice/80
+                                </td>
+                            </tr>
+                            <!-- Body Regular -->
+                            <tr>
+                                <td class="py-5 text-xs font-mono text-brand-light/40 align-top">
+                                    Body Regular<br/>
+                                    <span class="text-[8px] text-brand-light/60">body-md</span>
+                                </td>
+                                <td class="py-5">
+                                    <p class="text-sm text-brand-light/60 font-light leading-relaxed">
+                                        Holdings familiares e acordos de acionistas desenhados sob medida por especialistas renomados no cenário nacional.
+                                    </p>
+                                </td>
+                                <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
+                                    font-family: Inter (sans-serif)<br/>
+                                    font-size: 14px (0.875rem) | font-weight: 300<br/>
+                                    line-height: 1.5 | text-color: white-ice/60
+                                </td>
+                            </tr>
+                            <!-- Captions / Labels -->
+                            <tr>
+                                <td class="py-5 text-xs font-mono text-brand-light/40 align-top">
+                                    Caption & Label<br/>
+                                    <span class="text-[8px] text-brand-gold font-bold">caption / uppercase</span>
+                                </td>
+                                <td class="py-5">
+                                    <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold font-sans">ÁREAS DE ATUAÇÃO</span>
+                                </td>
+                                <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
+                                    font-family: Inter (sans-serif)<br/>
+                                    font-size: 10px | font-weight: 700 (bold)<br/>
+                                    letter-spacing: 0.1em (widest) | text-transform: uppercase
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3) Color System Section -->
+        <section id="colors" class="anchor-section container mx-auto px-6 max-w-6xl mb-24 md:mb-32">
+            <div class="mb-10 reveal">
+                <span class="text-brand-gold text-[10px] tracking-[0.25em] uppercase font-bold mb-2 block">Seção 02</span>
+                <h2 class="text-3xl md:text-5xl font-serif text-white tracking-tight">Sistema de Cores</h2>
+                <div class="h-[1px] w-20 bg-brand-gold/30 mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+                <!-- Brand Dark (Neutral Background) -->
+                <div class="glass-panel rounded-2xl p-5 border border-white/5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-24 rounded-lg bg-[#0E2347] border border-white/10 mb-4 flex items-center justify-center">
+                            <span class="text-[10px] font-mono text-white/60">#0E2347</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">Brand Dark (Fundo Principal)</h4>
+                        <p class="text-[10px] text-brand-pink font-mono mb-2">rgb(14, 35, 71) | HSL(218, 67%, 17%)</p>
+                        <p class="text-xs text-brand-light/70 font-light leading-relaxed">
+                            A base do design system. Um azul marinho escuro e sofisticado que substitui os tons cinzas e pretos antigos, transmitindo seriedade técnica e profundidade.
+                        </p>
+                    </div>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Regra: Fundo da página (bg-brand-dark)</span>
+                </div>
+
+                <!-- Panel Dark (Surface) -->
+                <div class="glass-panel rounded-2xl p-5 border border-white/5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-24 rounded-lg bg-[#1A3566] border border-white/10 mb-4 flex items-center justify-center">
+                            <span class="text-[10px] font-mono text-white/60">#1A3566</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">Panel Dark (Superfície Sólida)</h4>
+                        <p class="text-[10px] text-brand-pink font-mono mb-2">rgb(26, 53, 102) | HSL(219, 59%, 25%)</p>
+                        <p class="text-xs text-brand-light/70 font-light leading-relaxed">
+                            Cor sólida interna usada para painéis informativos e cartões do tipo Bento Grid, atuando como contraste principal ao fundo marinho escuro.
+                        </p>
+                    </div>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Regra: Bento Cards sólidos</span>
+                </div>
+
+                <!-- Brand Gold (Highlight) -->
+                <div class="glass-panel rounded-2xl p-5 border border-white/5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-24 rounded-lg bg-[#D4B47A] border border-white/10 mb-4 flex items-center justify-center">
+                            <span class="text-[10px] font-mono text-brand-dark">#D4B47A</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">Destaque Dourado (Premium Highlight)</h4>
+                        <p class="text-[10px] text-brand-gold font-mono mb-2">rgb(212, 180, 122) | HSL(39, 50%, 65%)</p>
+                        <p class="text-xs text-brand-light/70 font-light leading-relaxed">
+                            Cor clássica de destaque. Utilizada em badges, elementos de liderança técnica, timelines de vitória jurídica e contornos de conic spinner.
+                        </p>
+                    </div>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Contraste: AAA em Fundo Escuro</span>
+                </div>
+
+                <!-- Accent Color Blue (Acento Principal) -->
+                <div class="glass-panel rounded-2xl p-5 border border-white/5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-24 rounded-lg bg-[#2E86E8] border border-white/10 mb-4 flex items-center justify-center">
+                            <span class="text-[10px] font-mono text-white/90">#2E86E8</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">Accent Blue (Acento Primário)</h4>
+                        <p class="text-[10px] text-brand-pink font-mono mb-2">rgb(46, 134, 232) | HSL(212, 80%, 55%)</p>
+                        <p class="text-xs text-brand-light/70 font-light leading-relaxed">
+                            Acento elétrico vibrante do projeto do livro e elementos dinâmicos. Define o início de gradientes e botões da marca.
+                        </p>
+                    </div>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Regra: Ações Principais e Linkagem</span>
+                </div>
+
+                <!-- Accent Variation Light Blue (Variação de Acento) -->
+                <div class="glass-panel rounded-2xl p-5 border border-white/5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-24 rounded-lg bg-[#6FA8F5] border border-white/10 mb-4 flex items-center justify-center">
+                            <span class="text-[10px] font-mono text-brand-dark">#6FA8F5</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">Accent Light Blue (Variação de Acento)</h4>
+                        <p class="text-[10px] text-brand-pink font-mono mb-2">rgb(111, 168, 245) | HSL(214, 87%, 70%)</p>
+                        <p class="text-xs text-brand-light/70 font-light leading-relaxed">
+                            A variação mais leve e luminosa do azul acentuado. Aplicada para criar transições degradês brilhantes e estados de focos e contornos ativos.
+                        </p>
+                    </div>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Regra: Gradientes e Texturas Secundárias</span>
+                </div>
+
+                <!-- Ice White (Claros/Neutral Light) -->
+                <div class="glass-panel rounded-2xl p-5 border border-white/5 flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-24 rounded-lg bg-[#F4F6FA] border border-white/10 mb-4 flex items-center justify-center">
+                            <span class="text-[10px] font-mono text-brand-dark">#F4F6FA</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">Branco Gelo (Neutral Light)</h4>
+                        <p class="text-[10px] text-brand-pink font-mono mb-2">rgb(244, 246, 250) | HSL(220, 33%, 97%)</p>
+                        <p class="text-xs text-brand-light/70 font-light leading-relaxed">
+                            Cor clara para textos primários, subtítulos secundários leves e contornos reflexivos de bordas translúcidas de vidro.
+                        </p>
+                    </div>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Regra: Tipografia de Alta Legibilidade</span>
+                </div>
+            </div>
+
+            <!-- Opacity Variants Strip -->
+            <div class="glass-panel rounded-2xl p-6 border border-white/5 mt-8 reveal">
+                <h4 class="text-xs uppercase tracking-widest text-brand-light/40 font-bold mb-4 font-mono">Variantes de Opacidade Contextuais (Com Branco Gelo)</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="border border-white/5 p-3 rounded-lg text-center bg-white/[0.01]">
+                        <span class="block text-xs font-mono text-brand-light/60">light/5</span>
+                        <span class="text-[9px] text-brand-light/30 block mt-0.5">5% Alpha Ice White</span>
+                    </div>
+                    <div class="border border-white/10 p-3 rounded-lg text-center bg-white/[0.02]">
+                        <span class="block text-xs font-mono text-brand-light">light/10</span>
+                        <span class="text-[9px] text-brand-light/30 block mt-0.5">10% Alpha Ice White</span>
+                    </div>
+                    <div class="border border-brand-gold/10 p-3 rounded-lg text-center bg-brand-gold/[0.02]">
+                        <span class="block text-xs font-mono text-brand-gold">brand-gold/10</span>
+                        <span class="text-[9px] text-brand-light/30 block mt-0.5">10% Alpha Gold</span>
+                    </div>
+                    <div class="border border-brand-gold/20 p-3 rounded-lg text-center bg-brand-gold/[0.04]">
+                        <span class="block text-xs font-mono text-brand-goldglow">brand-gold/20</span>
+                        <span class="text-[9px] text-brand-light/30 block mt-0.5">20% Alpha Gold</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4) UI Components Section -->
+        <section id="components" class="anchor-section container mx-auto px-6 max-w-6xl mb-24 md:mb-32">
+            <div class="mb-10 reveal">
+                <span class="text-brand-gold text-[10px] tracking-[0.25em] uppercase font-bold mb-2 block">Seção 03</span>
+                <h2 class="text-3xl md:text-5xl font-serif text-white tracking-tight">Componentes de Interface</h2>
+                <div class="h-[1px] w-20 bg-brand-gold/30 mt-3"></div>
+            </div>
+
+            <!-- Buttons Grid -->
+            <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 mb-8 reveal">
+                <h3 class="text-xl font-serif text-white mb-6">Botões (Animations & Hover States)</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Conic Border Button -->
+                    <div class="space-y-3">
+                        <span class="text-[9px] font-mono text-brand-light/40 block uppercase tracking-wider">01. Conic Gradient Border (Interactive)</span>
+                        <div class="flex flex-col gap-4 items-start">
+                            <a class="group relative inline-flex items-center justify-center overflow-hidden rounded-full p-[1px] focus:outline-none" href="#">
+                                <span class="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0E2347_0%,#D4B47A_50%,#0E2347_100%)]"></span>
+                                <span class="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-brand-panel px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-3xl transition-all group-hover:bg-[#151515]">
+                                    Conic Primary
+                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i>
+                                </span>
+                            </a>
+                            <div class="text-[9px] text-brand-light/30 italic">A borda cônica gira entre a cor de fundo #0E2347 e destaque #D4B47A.</div>
+                        </div>
+                    </div>
+
+                    <!-- White Pill / Luxury button -->
+                    <div class="space-y-3">
+                        <span class="text-[9px] font-mono text-brand-light/40 block uppercase tracking-wider">02. White Pill Button</span>
+                        <div class="flex flex-col gap-4 items-start">
+                            <a class="bg-white text-brand-dark px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-brand-gold hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.1)] inline-block" href="#">
+                                Consultoria
+                            </a>
+                            <a class="bg-brand-gold text-brand-dark px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.1)] inline-block" href="#">
+                                (Simulated Hover)
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Webflow Styled Gradient button -->
+                    <div class="space-y-3">
+                        <span class="text-[9px] font-mono text-brand-light/40 block uppercase tracking-wider">03. Editorial Blue Button (Webflow Override)</span>
+                        <div class="flex flex-col gap-4 items-start">
+                            <a class="main-cta w-button mb-0 hover:scale-105 transition-transform" href="#" style="padding: 12px 24px; font-size: 10px; font-weight: bold; letter-spacing: 2px; border-radius: 9999px; line-height: 1;">
+                                COMPRAR AGORA
+                            </a>
+                            <div class="text-[9px] text-brand-light/30 italic font-mono">Transição graduada do azul #2E86E8 ao #6FA8F5.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inputs and Focus states -->
+            <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 mb-8 reveal">
+                <h3 class="text-xl font-serif text-white mb-6">Campos de Formulário (Focus States)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Text Input -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-[9px] uppercase tracking-wider text-brand-light/40 ml-1 block mb-1">Input de Texto (Normal)</label>
+                            <input class="w-full rounded-lg px-4 py-3 text-xs text-white tech-input placeholder-brand-light/20" placeholder="Seu nome completo" type="text"/>
+                        </div>
+                        <div>
+                            <label class="text-[9px] uppercase tracking-wider text-brand-light/40 ml-1 block mb-1">Input de Texto (Simulated Focus)</label>
+                            <input class="w-full rounded-lg px-4 py-3 text-xs text-white placeholder-brand-light/20" style="background: rgba(212, 180, 122, 0.05); border: 1px solid #D4B47A; outline: none; box-shadow: 0 0 15px rgba(212, 180, 122, 0.15);" placeholder="corp@email.com" type="email" value="Fernanda@advocacia.com.br"/>
+                        </div>
+                    </div>
+                    <!-- Textarea -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-[9px] uppercase tracking-wider text-brand-light/40 ml-1 block mb-1">Área de Texto (Normal)</label>
+                            <textarea class="w-full rounded-lg px-4 py-3 text-xs text-white tech-input placeholder-brand-light/20 resize-none" placeholder="Escreva breve resumo do seu caso..." rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bento Card Grid layouts -->
+            <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 mb-8 reveal">
+                <h3 class="text-xl font-serif text-white mb-6">Cards & Bento Containers</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Bento Wide Card -->
+                    <div class="md:col-span-2 rounded-2xl glass-panel p-6 relative overflow-hidden group transition-all duration-300">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-purple/5 blur-[50px] rounded-full pointer-events-none transition-opacity opacity-50 group-hover:opacity-100"></div>
+                        <div class="relative z-10 flex flex-col justify-between h-full min-h-[180px]">
+                            <div>
+                                <span class="text-[8px] uppercase tracking-widest text-brand-gold font-bold">Bento Layout</span>
+                                <h4 class="text-lg font-serif text-white mt-1 mb-2">Painel de Vidro Amplo (.glass-panel)</h4>
+                                <p class="text-brand-light/50 text-xs font-light leading-relaxed max-w-md">
+                                    Base estrutural que utiliza gradientes sutis, desfoque de fundo e borda fina de 1px com 8% de opacidade sobre a cor do painel sólido #1A3566.
+                                </p>
+                            </div>
+                            <div class="border-t border-white/10 pt-3 mt-4 flex items-center justify-between text-[8px] font-mono text-brand-light/30 uppercase tracking-widest">
+                                <span>CSS: backdrop-filter: blur(12px)</span>
+                                <span>Contraste Garantido</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial/Citation Card -->
+                    <div class="md:col-span-1 rounded-2xl glass-panel p-6 relative overflow-hidden group transition-all duration-300">
+                        <div class="relative z-10 flex flex-col justify-between h-full min-h-[180px]">
+                            <div>
+                                <i data-lucide="quote" class="w-6 h-6 text-brand-gold mb-3 opacity-30"></i>
+                                <p class="text-brand-light/70 italic text-xs leading-relaxed mb-4">
+                                    "A excelência jurídica é construída com obsessão cirúrgica por detalhes."
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-brand-gold/20 flex items-center justify-center">
+                                    <i data-lucide="award" class="w-3.5 h-3.5 text-brand-gold"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-[10px] font-bold text-white leading-none">Dra. Fernanda</h5>
+                                    <span class="text-[8px] text-brand-light/40">Autora do Livro</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modals, Badges & Tooltips showcase in a 2x2 grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+                
+                <!-- 1. Live Modal Showcase -->
+                <div class="glass-panel rounded-2xl p-6 border border-white/5 flex flex-col justify-between min-h-[220px]">
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-2">Janelas Modais (Premium Modal)</h4>
+                        <p class="text-xs text-brand-light/50 font-light leading-relaxed mb-4">
+                            Utiliza desfocagem ambiental ativa sobre o conteúdo de fundo em azul marinho #0E2347 e transições de escala.
+                        </p>
+                    </div>
+                    <button onclick="openDemoModal()" class="w-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-gold/30 text-white px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all" type="button">
+                        Abrir Modal Teste
+                    </button>
+                </div>
+
+                <!-- 2. Badges & Indicators -->
+                <div class="glass-panel rounded-2xl p-6 border border-white/5 flex flex-col justify-between min-h-[220px]">
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-4">Badges & Indicadores de Status</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between border-b border-white/5 pb-2">
+                                <span class="text-xs text-brand-light/60">Pulsing Badge</span>
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[8px] font-bold tracking-wider uppercase bg-brand-gold/10 text-brand-gold border border-brand-gold/20">
+                                    <span class="w-1.5 h-1.5 bg-brand-gold rounded-full animate-ping"></span>
+                                    Pré-venda
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-white/5 pb-2">
+                                <span class="text-xs text-brand-light/60">Azul Badge</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[8px] font-bold tracking-wider uppercase bg-brand-purple/20 text-brand-pink border border-brand-pink/20">
+                                    Livro Digital
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-brand-light/60">Contador Clássico</span>
+                                <span class="text-[9px] font-mono text-brand-light/40 bg-white/5 border border-white/10 rounded px-1.5 py-0.5">V2.0.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-[8px] font-mono text-brand-light/30 uppercase tracking-widest text-center">Badges adaptativas e leves</div>
+                </div>
+
+                <!-- 3. Tooltips Block -->
+                <div class="glass-panel rounded-2xl p-6 border border-white/5 flex flex-col justify-between min-h-[220px]">
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-2">Dicas Flutuantes (Tooltips)</h4>
+                        <p class="text-xs text-brand-light/50 font-light leading-relaxed mb-6">
+                            Posicionadas absolutamente acima do elemento ativador, surgindo suavemente com desvanecimento.
+                        </p>
+                        
+                        <!-- Tooltip anchor structure -->
+                        <div class="relative inline-block tooltip-trigger">
+                            <span class="text-xs text-brand-gold underline decoration-dotted cursor-help font-medium">Passe o mouse aqui</span>
+                            <div class="tooltip-box absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-32 p-2 bg-brand-panel border border-brand-gold/30 text-[9px] text-brand-light/80 rounded-lg shadow-xl text-center pointer-events-none opacity-0 scale-95 transition-all duration-300 origin-bottom">
+                                Comunicação Segura &amp; Criptografada SSL.
+                                <span class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-brand-panel"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-[8px] font-mono text-brand-light/30 uppercase tracking-widest text-center">Estrutura 100% CSS puro</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5) Iconography Section -->
+        <section id="icons" class="anchor-section container mx-auto px-6 max-w-6xl mb-24 md:mb-32">
+            <div class="mb-10 reveal">
+                <span class="text-brand-gold text-[10px] tracking-[0.25em] uppercase font-bold mb-2 block">Seção 04</span>
+                <h2 class="text-3xl md:text-5xl font-serif text-white tracking-tight">Iconografia do Sistema</h2>
+                <div class="h-[1px] w-20 bg-brand-gold/30 mt-3"></div>
+            </div>
+
+            <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 reveal">
+                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-6 mb-8">
+                    <!-- Icon: Book -->
+                    <div class="flex flex-col items-center justify-center p-4 bg-brand-panel/30 border border-white/5 rounded-xl text-center font-sans">
+                        <i data-lucide="book-open" class="w-6 h-6 text-brand-gold mb-3"></i>
+                        <span class="text-[9px] font-mono text-brand-light/60">book-open</span>
+                    </div>
+                    <!-- Icon: Award -->
+                    <div class="flex flex-col items-center justify-center p-4 bg-brand-panel/30 border border-white/5 rounded-xl text-center font-sans">
+                        <i data-lucide="award" class="w-6 h-6 text-brand-gold mb-3"></i>
+                        <span class="text-[9px] font-mono text-brand-light/60">award</span>
+                    </div>
+                    <!-- Icon: Gavel -->
+                    <div class="flex flex-col items-center justify-center p-4 bg-brand-panel/30 border border-white/5 rounded-xl text-center font-sans">
+                        <i data-lucide="gavel" class="w-6 h-6 text-brand-gold mb-3"></i>
+                        <span class="text-[9px] font-mono text-brand-light/60">gavel</span>
+                    </div>
+                    <!-- Icon: Shield -->
+                    <div class="flex flex-col items-center justify-center p-4 bg-brand-panel/30 border border-white/5 rounded-xl text-center font-sans">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-brand-gold mb-3"></i>
+                        <span class="text-[9px] font-mono text-brand-light/60">shield-check</span>
+                    </div>
+                    <!-- Icon: Lock -->
+                    <div class="flex flex-col items-center justify-center p-4 bg-brand-panel/30 border border-white/5 rounded-xl text-center font-sans">
+                        <i data-lucide="lock" class="w-6 h-6 text-brand-gold mb-3"></i>
+                        <span class="text-[9px] font-mono text-brand-light/60">lock</span>
+                    </div>
+                    <!-- Icon: Feather -->
+                    <div class="flex flex-col items-center justify-center p-4 bg-brand-panel/30 border border-white/5 rounded-xl text-center font-sans">
+                        <i data-lucide="feather" class="w-6 h-6 text-brand-gold mb-3"></i>
+                        <span class="text-[9px] font-mono text-brand-light/60">feather</span>
+                    </div>
+                    <!-- Icon: Quote -->
+                    <div class="flex flex-col items-center justify-center p-4 bg-brand-panel/30 border border-white/5 rounded-xl text-center font-sans">
+                        <i data-lucide="quote" class="w-6 h-6 text-brand-gold mb-3"></i>
+                        <span class="text-[9px] font-mono text-brand-light/60">quote</span>
+                    </div>
+                    <!-- Icon: Star -->
+                    <div class="flex flex-col items-center justify-center p-4 bg-brand-panel/30 border border-white/5 rounded-xl text-center font-sans">
+                        <i data-lucide="star" class="w-6 h-6 text-brand-gold mb-3"></i>
+                        <span class="text-[9px] font-mono text-brand-light/60">star</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-white/5 pt-8 font-sans">
+                    <!-- Size standards -->
+                    <div>
+                        <h4 class="text-xs uppercase tracking-wider text-brand-light/40 mb-4 font-mono">Padrões de Escala de Ícones</h4>
+                        <div class="flex items-end gap-6">
+                            <div class="flex flex-col items-center">
+                                <i data-lucide="book-open" class="w-10 h-10 text-brand-gold"></i>
+                                <span class="text-[8px] font-mono text-brand-light/30 mt-2">w-10 h-10 (40px)</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <i data-lucide="book-open" class="w-8 h-8 text-brand-gold"></i>
+                                <span class="text-[8px] font-mono text-brand-light/30 mt-2">w-8 h-8 (32px)</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <i data-lucide="book-open" class="w-6 h-6 text-brand-gold"></i>
+                                <span class="text-[8px] font-mono text-brand-light/30 mt-2">w-6 h-6 (24px)</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <i data-lucide="book-open" class="w-5 h-5 text-brand-gold"></i>
+                                <span class="text-[8px] font-mono text-brand-light/30 mt-2">w-5 h-5 (20px)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style guidelines -->
+                    <div>
+                        <h4 class="text-xs uppercase tracking-wider text-brand-light/40 mb-4 font-mono">Diretrizes de Traço & Cor</h4>
+                        <p class="text-xs text-brand-light/50 leading-relaxed font-light mb-2">
+                            1. Utilizar Lucide com espessura padrão de traço igual a <span class="text-brand-gold font-mono">2px</span> para manter legibilidade técnica.
+                        </p>
+                        <p class="text-xs text-brand-light/50 leading-relaxed font-light">
+                            2. Os ícones herdam as cores das classes tipográficas do Tailwind (ex: <span class="text-brand-gold font-mono">text-brand-gold</span>).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6) Animations & Motion Section -->
+        <section id="animations" class="anchor-section container mx-auto px-6 max-w-6xl mb-12">
+            <div class="mb-10 reveal">
+                <span class="text-brand-gold text-[10px] tracking-[0.25em] uppercase font-bold mb-2 block">Seção 05</span>
+                <h2 class="text-3xl md:text-5xl font-serif text-white tracking-tight">Movimento & Animações</h2>
+                <div class="h-[1px] w-20 bg-brand-gold/30 mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 reveal">
+                <!-- Entrance triggers demonstration -->
+                <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 flex flex-col justify-between min-h-[300px]">
+                    <div>
+                        <h3 class="text-xl font-serif text-white mb-2">Entrada Fluida (.reveal)</h3>
+                        <p class="text-xs text-brand-light/40 mb-6">Suave subida com atenuação cúbica de 0.9s e desfoque inteligente. Perfeito para surgimento progressivo de seções durante o rolamento.</p>
+                        
+                        <div class="flex justify-center py-6">
+                            <div id="reveal-target" class="reveal active bg-brand-panel border border-brand-gold/30 rounded-2xl p-5 text-center max-w-xs shadow-lg">
+                                <i data-lucide="shield-check" class="w-8 h-8 text-brand-gold mx-auto mb-2 animate-[spin_10s_linear_infinite]"></i>
+                                <h4 class="text-xs font-bold text-white uppercase tracking-wider">Cartão Revelador</h4>
+                                <p class="text-[9px] text-brand-light/50 mt-1 font-mono">transition: cubic-bezier(0.16, 1, 0.3, 1)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="triggerRevealSpec()" class="w-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-pink/40 text-white px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all mt-4 font-sans" type="button">
+                        Repetir Animação de Entrada
+                    </button>
+                </div>
+
+                <!-- Specs gallery for tailwind keyframes -->
+                <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 font-sans">
+                    <h3 class="text-xl font-serif text-white mb-6">Galeria de Keyframes Nativos</h3>
+                    <div class="space-y-6">
+                        
+                        <!-- Floating graphic specs -->
+                        <div class="flex items-center justify-between border-b border-white/5 pb-4">
+                            <div>
+                                <h4 class="text-xs font-bold text-white font-mono">.animate-float</h4>
+                                <p class="text-[10px] text-brand-light/40">Flutuação senoidal contínua (Y: ±10px). Usado nas capas de livros.</p>
+                            </div>
+                            <div class="pr-2">
+                                <div class="animate-float p-2 rounded-lg bg-brand-gold/10 text-brand-gold">
+                                    <i data-lucide="feather" class="w-5 h-5"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Conic spinner gradient border -->
+                        <div class="flex items-center justify-between border-b border-white/5 pb-4">
+                            <div>
+                                <h4 class="text-xs font-bold text-white font-mono">Conic Spinner [spin_4s]</h4>
+                                <p class="text-[10px] text-brand-light/40">Rotação cônica infinita de gradiente para preencher botões primários.</p>
+                            </div>
+                            <div class="pr-2">
+                                <div class="w-10 h-10 rounded-full bg-[conic-gradient(from_90deg_at_50%_50%,#0E2347_0%,#D4B47A_50%,#0E2347_100%)] animate-[spin_4s_linear_infinite] flex items-center justify-center p-[2px]">
+                                    <div class="w-full h-full rounded-full bg-brand-dark"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Double Ring revolving Shield -->
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="text-xs font-bold text-white font-mono">Dashed Double Spin [spin_10s / spin_15s]</h4>
+                                <p class="text-[10px] text-brand-light/40">Giro concêntrico nos dois sentidos. Metáfora de segurança jurídica.</p>
+                            </div>
+                            <div class="relative w-10 h-10 flex items-center justify-center mr-2">
+                                <div class="absolute inset-0 border border-dashed border-brand-gold/30 rounded-full animate-[spin_10s_linear_infinite]"></div>
+                                <div class="absolute inset-1.5 border border-dashed border-brand-pink/20 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+                                <i data-lucide="shield-check" class="w-4 h-4 text-brand-gold relative z-10"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Interactive Demonstration Modal (Hidden by Default) -->
+    <div id="demo-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <!-- Backdrop -->
+        <div onclick="closeDemoModal()" class="absolute inset-0 bg-[#0E2347]/80 backdrop-blur-md"></div>
+        <!-- Modal Frame -->
+        <div class="modal-content relative glass-panel rounded-3xl p-6 md:p-8 max-w-md w-[90%] shadow-2xl transform scale-95 transition-transform duration-300 z-10">
+            <button onclick="closeDemoModal()" class="absolute top-4 right-4 text-brand-light/40 hover:text-white transition-colors" type="button">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="text-center space-y-4">
+                <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mx-auto text-brand-gold border border-brand-gold/20">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-serif text-white">Cópia de Demonstração</h3>
+                <p class="text-xs text-brand-light/60 leading-relaxed font-light font-sans">
+                    Esta é uma demonstração de modal ativo do sistema. O fundo foi escurecido e desfocado com azul marinho #0E2347 para prender a atenção do usuário no conteúdo de destaque.
+                </p>
+                <div class="pt-4 flex gap-4 font-sans">
+                    <button onclick="closeDemoModal()" class="flex-1 bg-white/5 border border-white/10 text-white px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-colors" type="button">
+                        Fechar Janela
+                    </button>
+                    <a class="flex-1 bg-brand-gold text-brand-dark px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-center hover:bg-white transition-colors inline-block" href="https://www.amazon.com/Confessions-Division-1-Athlete-Jim-Karas/dp/1638488517" target="_blank">
+                        Garantir Cópia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-[#0E2347] py-12">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <span class="text-brand-light/20 text-[10px] font-mono">© 2026 Dra. Fernanda. Todos os direitos reservados. Design System Showcase.</span>
+                <div class="flex gap-4">
+                    <i class="w-4 h-4 text-brand-light/30 hover:text-white cursor-pointer transition-colors" data-lucide="linkedin"></i>
+                    <i class="w-4 h-4 text-brand-light/30 hover:text-white cursor-pointer transition-colors" data-lucide="instagram"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts initialization -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Reveal animations Scroll Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -5% 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Interactive reveal spec test trigger
+        function triggerRevealSpec() {
+            const el = document.getElementById('reveal-target');
+            el.classList.remove('active');
+            setTimeout(() => {
+                el.classList.add('active');
+            }, 150);
+        }
+
+        // Active Modal controls
+        function openDemoModal() {
+            const modal = document.getElementById('demo-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('.modal-content').classList.remove('scale-95');
+            }, 50);
+        }
+
+        function closeDemoModal() {
+            const modal = document.getElementById('demo-modal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('.modal-content').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
