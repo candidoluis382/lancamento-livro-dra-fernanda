@@ -6,8 +6,10 @@
     <title>Design System & Showcase | Lançamento Dra. Fernanda</title>
     <meta content="Living design system for Lançamento do Livro da Dra. Fernanda. Unified patterns, premium aesthetics, and responsive layout structures." name="description"/>
     
-    <!-- Fonts: Inter & Instrument Serif from luxury-law-firm-11 assets -->
-    <link href="luxury-law-firm-11.aura.build/assets/6247690e95446626_css2.css" rel="stylesheet"/>
+    <!-- Fonts: Plus Jakarta Sans, Playfair Display & IBM Plex Mono from local luxury-law-firm-11 assets -->
+    <link href="luxury-law-firm-11.aura.build/assets/d12728c695d9fa3b_css2.css" rel="stylesheet"/>
+    <link href="luxury-law-firm-11.aura.build/assets/04e082577ae710a5_css2.css" rel="stylesheet"/>
+    
     <!-- Webflow Stylesheet from karasbook.webflow.io assets -->
     <link href="karasbook.webflow.io/assets/735df6cba923ddde_karasbook.webflow.43ad82704.css" rel="stylesheet" type="text/css"/>
     <!-- Tailwind CSS (Tailwind 3.4.17) from luxury-law-firm-11 assets -->
@@ -20,19 +22,18 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Instrument Serif', 'serif'],
-                        mono: ['Courier New', 'monospace'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'], // Mais moderna, geométrica e espaçada que a Inter
+                        serif: ['Playfair Display', 'serif'], // Serifada de altíssimo luxo, com traços finos elegantes
+                        mono: ['IBM Plex Mono', 'monospace'],
                     },
                     colors: {
                         brand: {
                             gold: '#D4B47A', // Nova Cor de Destaque (Dourado)
                             goldglow: '#E3CFA8', // Variação clara do dourado
-                            dark: '#0E2347', // Novo Fundo (Deep Navy)
-                            panel: '#1A3566', // Novo Panel Dark (Mid Blue)
-                            border: 'rgba(244, 246, 250, 0.08)', // Usando o Branco Gelo (#F4F6FA) nas bordas
+                            dark: '#0E2347', // Fundo (Deep Navy)
+                            panel: '#1A3566', // Panel Dark (Mid Blue)
+                            border: 'rgba(244, 246, 250, 0.08)', // Branco Gelo (#F4F6FA) nas bordas
                             
-                            // Novo Acento e Variações Azuis (substituindo rosa e roxo)
                             purple: '#2E86E8', // Acento Principal (Vibrant Blue)
                             pink: '#6FA8F5', // Acento Secundário (Light Blue)
                             blue: '#1A3566',
@@ -62,12 +63,12 @@
     <style>
         /* CSS resets for Webflow and Tailwind coexistence */
         body {
-            background-color: #0E2347; /* Nova cor de fundo */
+            background-color: #0E2347; 
             color: #F4F6FA; /* Branco gelo */
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
             padding-top: 0 !important;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif; /* Fonte base elegante e fina */
         }
 
         /* --- Scroll Entrance Reveals --- */
@@ -157,6 +158,7 @@
             background: linear-gradient(249deg, #2E86E8, #6FA8F5) !important;
             border: none !important;
             color: #F4F6FA !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
         }
         .main-cta:hover {
             background: linear-gradient(249deg, #1E65B8, #2E86E8) !important;
@@ -228,7 +230,7 @@
                         <span class="text-[9px] font-bold text-brand-pink tracking-widest uppercase">Lançamento Exclusivo • Dra. Fernanda</span>
                     </div>
                     
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif text-white tracking-tight leading-[1.05]">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif text-white tracking-wide leading-[1.25]">
                         A Justiça em <br/>
                         <span class="text-brand-pink italic pr-2">Páginas de</span>
                         <span class="text-gradient">Ouro.</span>
@@ -236,7 +238,7 @@
                     
                     <div class="h-[1px] w-48 bg-gradient-to-r from-brand-gold/60 via-brand-pink/20 to-transparent"></div>
                     
-                    <p class="text-sm md:text-base font-light text-brand-light/60 max-w-xl leading-relaxed">
+                    <p class="text-sm md:text-base font-light text-brand-light/70 max-w-xl leading-loose tracking-wide">
                         Uma obra prima literária que descortina os bastidores da advocacia de alta performance, estratégias de governança patrimonial e o verdadeiro legado jurídico corporativo. Adquira sua cópia autografada na pré-venda.
                     </p>
                     
@@ -245,7 +247,7 @@
                         <!-- Primary Conic Border Spinning Button -->
                         <a class="group relative inline-flex items-center justify-center overflow-hidden rounded-full p-[1px] focus:outline-none" href="https://www.amazon.com/Confessions-Division-1-Athlete-Jim-Karas/dp/1638488517" target="_blank">
                             <span class="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0E2347_0%,#D4B47A_50%,#0E2347_100%)]"></span>
-                            <span class="inline-flex h-full w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-brand-panel px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-3xl transition-all group-hover:bg-[#151515]">
+                            <span class="inline-flex h-full w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-brand-panel px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-3xl transition-all group-hover:bg-[#151515]">
                                 ADQUIRIR LIVRO
                                 <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold group-hover:translate-x-0.5 transition-transform"></i>
                             </span>
@@ -270,18 +272,18 @@
                         </div>
 
                         <!-- Mini Testimonial Glass Overlay -->
-                        <div class="absolute -bottom-6 -left-6 md:-left-10 glass-panel rounded-2xl p-4 max-w-[220px] shadow-2xl reveal active transition-transform duration-500 hover:-translate-y-1">
-                            <div class="flex items-center gap-1 mb-1.5">
+                        <div class="absolute -bottom-6 -left-6 md:-left-10 glass-panel rounded-2xl p-5 max-w-[230px] shadow-2xl reveal active transition-transform duration-500 hover:-translate-y-1">
+                            <div class="flex items-center gap-1 mb-2">
                                 <img alt="5 Estrelas" class="w-20 object-contain" src="karasbook.webflow.io/assets/443d7848d9aaf6c0_606e4c7eb1b4bc4ad2fbcfe8_stars.png"/>
                             </div>
-                            <p class="text-[10px] italic text-brand-light/70 leading-relaxed mb-3">
+                            <p class="text-[10px] italic text-brand-light/80 leading-relaxed mb-4">
                                 "Uma leitura cirúrgica e indispensável para líderes do mercado corporativo."
                             </p>
                             <div class="flex items-center gap-2">
                                 <img alt="Crítico" class="w-6 h-6 rounded-full object-cover border border-brand-gold/30" src="karasbook.webflow.io/assets/84c41e80d5ba378d_606e252904734d6777c9c78f_mcken.webp"/>
                                 <div>
                                     <h4 class="text-[9px] font-bold text-white leading-none">Antigravity Review</h4>
-                                    <span class="text-[7px] text-brand-gold uppercase tracking-wider font-mono">Crítico Editorial</span>
+                                    <span class="text-[7px] text-brand-gold uppercase tracking-widest font-mono">Crítico Editorial</span>
                                 </div>
                             </div>
                         </div>
@@ -304,17 +306,17 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8 border-b border-white/5 pb-8">
                     <div>
                         <h4 class="text-xs uppercase tracking-widest text-brand-pink font-bold mb-2">Família Primária (Sans)</h4>
-                        <p class="text-xl font-bold font-sans text-white">Inter</p>
-                        <p class="text-[10px] text-brand-light/40 mt-1">Carregamento via Google Fonts CDN. Stack: Inter, sans-serif.</p>
+                        <p class="text-xl font-medium font-sans text-white">Plus Jakarta Sans</p>
+                        <p class="text-[10px] text-brand-light/40 mt-1">Design geométrico, alta legibilidade e excelente espaçamento de glifos. Stack: Plus Jakarta Sans, sans-serif.</p>
                     </div>
                     <div>
                         <h4 class="text-xs uppercase tracking-widest text-brand-gold font-bold mb-2">Família Secundária (Serif)</h4>
-                        <p class="text-xl font-bold font-serif text-white italic pr-1">Instrument Serif</p>
-                        <p class="text-[10px] text-brand-light/40 mt-1">Carregamento via Google Fonts CDN. Stack: Instrument Serif, serif.</p>
+                        <p class="text-xl font-medium font-serif text-white italic pr-1">Playfair Display</p>
+                        <p class="text-[10px] text-brand-light/40 mt-1">Serifada de altíssimo requinte e contraste clássico nos traços. Stack: Playfair Display, serif.</p>
                     </div>
                     <div>
-                        <h4 class="text-xs uppercase tracking-widest text-brand-light/60 font-bold mb-2">Estratégia de Fonte</h4>
-                        <p class="text-sm text-brand-light/70">CSS assíncrono com a diretiva display=swap para evitar renderizações bloqueadas (FOUT).</p>
+                        <h4 class="text-xs uppercase tracking-widest text-brand-light/60 font-bold mb-2">Ajuste de Respiração</h4>
+                        <p class="text-sm text-brand-light/70 leading-relaxed font-light">Todas as fontes contam com altura de linha expandida (leading-relaxed/loose) para evitar sobreposição e amontoamento de texto.</p>
                     </div>
                 </div>
 
@@ -335,15 +337,15 @@
                                     <span class="text-[8px] text-brand-gold font-bold">h1 / title-lg</span>
                                 </td>
                                 <td class="py-5">
-                                    <h1 class="text-4xl sm:text-5xl font-serif text-white tracking-tight leading-[1.05]">
+                                    <h1 class="text-4xl sm:text-5xl font-serif text-white tracking-wide leading-[1.25]">
                                         O Legado da <span class="text-white/40 italic">Estratégia</span> <span class="text-gradient">Jurídica.</span>
                                     </h1>
                                 </td>
                                 <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
-                                    font-family: Instrument Serif (serif)<br/>
+                                    font-family: Playfair Display (serif)<br/>
                                     font-size: 60px (md) / 40px (sm) / 32px (xs)<br/>
-                                    font-weight: 400 | line-height: 1.05<br/>
-                                    letter-spacing: -0.025em | text-transform: none
+                                    font-weight: 400 (light-normal) | line-height: 1.25<br/>
+                                    letter-spacing: 0.025em (wide) | text-transform: none
                                 </td>
                             </tr>
                             <!-- H2 -->
@@ -353,15 +355,15 @@
                                     <span class="text-[8px] text-brand-gold font-bold">h2 / section-title</span>
                                 </td>
                                 <td class="py-5">
-                                    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-tight">
+                                    <h2 class="text-2xl md:text-3xl font-serif text-white tracking-wide leading-[1.30]">
                                         Advocacia de Alta Performance e <span class="text-brand-pink italic">Negócios</span>
                                     </h2>
                                 </td>
                                 <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
-                                    font-family: Instrument Serif (serif)<br/>
+                                    font-family: Playfair Display (serif)<br/>
                                     font-size: 32px (md) / 24px (xs)<br/>
-                                    font-weight: 400 | line-height: 1.20<br/>
-                                    letter-spacing: -0.02em | text-transform: none
+                                    font-weight: 400 | line-height: 1.30<br/>
+                                    letter-spacing: 0.02em | text-transform: none
                                 </td>
                             </tr>
                             <!-- H3 -->
@@ -371,12 +373,12 @@
                                     <span class="text-[8px] text-brand-gold font-bold">h3 / card-title</span>
                                 </td>
                                 <td class="py-5">
-                                    <h3 class="text-lg md:text-xl font-serif text-white font-medium">Contratos & Governança Societária</h3>
+                                    <h3 class="text-lg md:text-xl font-serif text-white font-medium leading-[1.35] tracking-wide">Contratos & Governança Societária</h3>
                                 </td>
                                 <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
-                                    font-family: Instrument Serif (serif)<br/>
+                                    font-family: Playfair Display (serif)<br/>
                                     font-size: 20px | font-weight: 500<br/>
-                                    line-height: 1.30 | letter-spacing: normal
+                                    line-height: 1.35 | letter-spacing: 0.01em
                                 </td>
                             </tr>
                             <!-- Body Large -->
@@ -386,14 +388,14 @@
                                     <span class="text-[8px] text-brand-pink font-bold">body-lg</span>
                                 </td>
                                 <td class="py-5">
-                                    <p class="text-base text-brand-light/80 font-light leading-relaxed">
+                                    <p class="text-base text-brand-light/80 font-light leading-loose tracking-wide">
                                         Estratégia patrimonial focada na preservação de valor e na blindagem de ativos para as próximas gerações.
                                     </p>
                                 </td>
                                 <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
-                                    font-family: Inter (sans-serif)<br/>
-                                    font-size: 16px (1rem) | font-weight: 300<br/>
-                                    line-height: 1.625 (relaxed) | text-color: white-ice/80
+                                    font-family: Plus Jakarta Sans (sans-serif)<br/>
+                                    font-size: 16px (1rem) | font-weight: 300 (light)<br/>
+                                    line-height: 2.0 (loose) | letter-spacing: 0.025em (wide)
                                 </td>
                             </tr>
                             <!-- Body Regular -->
@@ -403,14 +405,14 @@
                                     <span class="text-[8px] text-brand-light/60">body-md</span>
                                 </td>
                                 <td class="py-5">
-                                    <p class="text-sm text-brand-light/60 font-light leading-relaxed">
+                                    <p class="text-sm text-brand-light/60 font-light leading-relaxed tracking-wide">
                                         Holdings familiares e acordos de acionistas desenhados sob medida por especialistas renomados no cenário nacional.
                                     </p>
                                 </td>
                                 <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
-                                    font-family: Inter (sans-serif)<br/>
+                                    font-family: Plus Jakarta Sans (sans-serif)<br/>
                                     font-size: 14px (0.875rem) | font-weight: 300<br/>
-                                    line-height: 1.5 | text-color: white-ice/60
+                                    line-height: 1.625 (relaxed) | letter-spacing: 0.015em
                                 </td>
                             </tr>
                             <!-- Captions / Labels -->
@@ -423,9 +425,9 @@
                                     <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold font-sans">ÁREAS DE ATUAÇÃO</span>
                                 </td>
                                 <td class="py-5 text-right font-mono text-[10px] text-brand-light/50 align-top">
-                                    font-family: Inter (sans-serif)<br/>
+                                    font-family: Plus Jakarta Sans (sans-serif)<br/>
                                     font-size: 10px | font-weight: 700 (bold)<br/>
-                                    letter-spacing: 0.1em (widest) | text-transform: uppercase
+                                    letter-spacing: 0.2em (widest) | text-transform: uppercase
                                 </td>
                             </tr>
                         </tbody>
@@ -449,13 +451,13 @@
                         <div class="w-full h-24 rounded-lg bg-[#0E2347] border border-white/10 mb-4 flex items-center justify-center">
                             <span class="text-[10px] font-mono text-white/60">#0E2347</span>
                         </div>
-                        <h4 class="text-sm font-bold text-white mb-1">Brand Dark (Fundo Principal)</h4>
+                        <h4 class="text-sm font-bold text-white mb-1 font-sans">Brand Dark (Fundo Principal)</h4>
                         <p class="text-[10px] text-brand-pink font-mono mb-2">rgb(14, 35, 71) | HSL(218, 67%, 17%)</p>
                         <p class="text-xs text-brand-light/70 font-light leading-relaxed">
                             A base do design system. Um azul marinho escuro e sofisticado que substitui os tons cinzas e pretos antigos, transmitindo seriedade técnica e profundidade.
                         </p>
                     </div>
-                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Regra: Fundo da página (bg-brand-dark)</span>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5 font-sans">Regra: Fundo da página (bg-brand-dark)</span>
                 </div>
 
                 <!-- Panel Dark (Surface) -->
@@ -464,13 +466,13 @@
                         <div class="w-full h-24 rounded-lg bg-[#1A3566] border border-white/10 mb-4 flex items-center justify-center">
                             <span class="text-[10px] font-mono text-white/60">#1A3566</span>
                         </div>
-                        <h4 class="text-sm font-bold text-white mb-1">Panel Dark (Superfície Sólida)</h4>
+                        <h4 class="text-sm font-bold text-white mb-1 font-sans">Panel Dark (Superfície Sólida)</h4>
                         <p class="text-[10px] text-brand-pink font-mono mb-2">rgb(26, 53, 102) | HSL(219, 59%, 25%)</p>
                         <p class="text-xs text-brand-light/70 font-light leading-relaxed">
                             Cor sólida interna usada para painéis informativos e cartões do tipo Bento Grid, atuando como contraste principal ao fundo marinho escuro.
                         </p>
                     </div>
-                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Regra: Bento Cards sólidos</span>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5 font-sans">Regra: Bento Cards sólidos</span>
                 </div>
 
                 <!-- Brand Gold (Highlight) -->
@@ -479,13 +481,13 @@
                         <div class="w-full h-24 rounded-lg bg-[#D4B47A] border border-white/10 mb-4 flex items-center justify-center">
                             <span class="text-[10px] font-mono text-brand-dark">#D4B47A</span>
                         </div>
-                        <h4 class="text-sm font-bold text-white mb-1">Destaque Dourado (Premium Highlight)</h4>
+                        <h4 class="text-sm font-bold text-white mb-1 font-sans">Destaque Dourado (Premium Highlight)</h4>
                         <p class="text-[10px] text-brand-gold font-mono mb-2">rgb(212, 180, 122) | HSL(39, 50%, 65%)</p>
                         <p class="text-xs text-brand-light/70 font-light leading-relaxed">
                             Cor clássica de destaque. Utilizada em badges, elementos de liderança técnica, timelines de vitória jurídica e contornos de conic spinner.
                         </p>
                     </div>
-                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Contraste: AAA em Fundo Escuro</span>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5 font-sans">Contraste: AAA em Fundo Escuro</span>
                 </div>
 
                 <!-- Accent Color Blue (Acento Principal) -->
@@ -494,13 +496,13 @@
                         <div class="w-full h-24 rounded-lg bg-[#2E86E8] border border-white/10 mb-4 flex items-center justify-center">
                             <span class="text-[10px] font-mono text-white/90">#2E86E8</span>
                         </div>
-                        <h4 class="text-sm font-bold text-white mb-1">Accent Blue (Acento Primário)</h4>
+                        <h4 class="text-sm font-bold text-white mb-1 font-sans">Accent Blue (Acento Primário)</h4>
                         <p class="text-[10px] text-brand-pink font-mono mb-2">rgb(46, 134, 232) | HSL(212, 80%, 55%)</p>
                         <p class="text-xs text-brand-light/70 font-light leading-relaxed">
                             Acento elétrico vibrante do projeto do livro e elementos dinâmicos. Define o início de gradientes e botões da marca.
                         </p>
                     </div>
-                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Regra: Ações Principais e Linkagem</span>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5 font-sans">Regra: Ações Principais e Linkagem</span>
                 </div>
 
                 <!-- Accent Variation Light Blue (Variação de Acento) -->
@@ -509,13 +511,13 @@
                         <div class="w-full h-24 rounded-lg bg-[#6FA8F5] border border-white/10 mb-4 flex items-center justify-center">
                             <span class="text-[10px] font-mono text-brand-dark">#6FA8F5</span>
                         </div>
-                        <h4 class="text-sm font-bold text-white mb-1">Accent Light Blue (Variação de Acento)</h4>
+                        <h4 class="text-sm font-bold text-white mb-1 font-sans">Accent Light Blue (Variação de Acento)</h4>
                         <p class="text-[10px] text-brand-pink font-mono mb-2">rgb(111, 168, 245) | HSL(214, 87%, 70%)</p>
                         <p class="text-xs text-brand-light/70 font-light leading-relaxed">
                             A variação mais leve e luminosa do azul acentuado. Aplicada para criar transições degradês brilhantes e estados de focos e contornos ativos.
                         </p>
                     </div>
-                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Regra: Gradientes e Texturas Secundárias</span>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5 font-sans">Regra: Gradientes e Texturas Secundárias</span>
                 </div>
 
                 <!-- Ice White (Claros/Neutral Light) -->
@@ -524,18 +526,18 @@
                         <div class="w-full h-24 rounded-lg bg-[#F4F6FA] border border-white/10 mb-4 flex items-center justify-center">
                             <span class="text-[10px] font-mono text-brand-dark">#F4F6FA</span>
                         </div>
-                        <h4 class="text-sm font-bold text-white mb-1">Branco Gelo (Neutral Light)</h4>
+                        <h4 class="text-sm font-bold text-white mb-1 font-sans">Branco Gelo (Neutral Light)</h4>
                         <p class="text-[10px] text-brand-pink font-mono mb-2">rgb(244, 246, 250) | HSL(220, 33%, 97%)</p>
                         <p class="text-xs text-brand-light/70 font-light leading-relaxed">
                             Cor clara para textos primários, subtítulos secundários leves e contornos reflexivos de bordas translúcidas de vidro.
                         </p>
                     </div>
-                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5">Regra: Tipografia de Alta Legibilidade</span>
+                    <span class="text-[9px] uppercase tracking-wider text-brand-gold font-bold mt-4 pt-3 border-t border-white/5 font-sans">Regra: Tipografia de Alta Legibilidade</span>
                 </div>
             </div>
 
             <!-- Opacity Variants Strip -->
-            <div class="glass-panel rounded-2xl p-6 border border-white/5 mt-8 reveal">
+            <div class="glass-panel rounded-2xl p-6 border border-white/5 mt-8 reveal font-sans">
                 <h4 class="text-xs uppercase tracking-widest text-brand-light/40 font-bold mb-4 font-mono">Variantes de Opacidade Contextuais (Com Branco Gelo)</h4>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     <div class="border border-white/5 p-3 rounded-lg text-center bg-white/[0.01]">
@@ -570,19 +572,19 @@
             <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 mb-8 reveal">
                 <h3 class="text-xl font-serif text-white mb-6">Botões (Animations & Hover States)</h3>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 font-sans">
                     <!-- Conic Border Button -->
                     <div class="space-y-3">
                         <span class="text-[9px] font-mono text-brand-light/40 block uppercase tracking-wider">01. Conic Gradient Border (Interactive)</span>
                         <div class="flex flex-col gap-4 items-start">
                             <a class="group relative inline-flex items-center justify-center overflow-hidden rounded-full p-[1px] focus:outline-none" href="#">
                                 <span class="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0E2347_0%,#D4B47A_50%,#0E2347_100%)]"></span>
-                                <span class="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-brand-panel px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-3xl transition-all group-hover:bg-[#151515]">
+                                <span class="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-brand-panel px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-3xl transition-all group-hover:bg-[#151515]">
                                     Conic Primary
                                     <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i>
                                 </span>
                             </a>
-                            <div class="text-[9px] text-brand-light/30 italic">A borda cônica gira entre a cor de fundo #0E2347 e destaque #D4B47A.</div>
+                            <div class="text-[9px] text-brand-light/30 leading-relaxed italic">A borda cônica gira entre a cor de fundo #0E2347 e destaque #D4B47A.</div>
                         </div>
                     </div>
 
@@ -590,10 +592,10 @@
                     <div class="space-y-3">
                         <span class="text-[9px] font-mono text-brand-light/40 block uppercase tracking-wider">02. White Pill Button</span>
                         <div class="flex flex-col gap-4 items-start">
-                            <a class="bg-white text-brand-dark px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-brand-gold hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.1)] inline-block" href="#">
+                            <a class="bg-white text-brand-dark px-6 py-3.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-brand-gold hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.1)] inline-block" href="#">
                                 Consultoria
                             </a>
-                            <a class="bg-brand-gold text-brand-dark px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.1)] inline-block" href="#">
+                            <a class="bg-brand-gold text-brand-dark px-6 py-3.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.1)] inline-block" href="#">
                                 (Simulated Hover)
                             </a>
                         </div>
@@ -603,35 +605,35 @@
                     <div class="space-y-3">
                         <span class="text-[9px] font-mono text-brand-light/40 block uppercase tracking-wider">03. Editorial Blue Button (Webflow Override)</span>
                         <div class="flex flex-col gap-4 items-start">
-                            <a class="main-cta w-button mb-0 hover:scale-105 transition-transform" href="#" style="padding: 12px 24px; font-size: 10px; font-weight: bold; letter-spacing: 2px; border-radius: 9999px; line-height: 1;">
+                            <a class="main-cta w-button mb-0 hover:scale-105 transition-transform" href="#" style="padding: 14px 28px; font-size: 10px; font-weight: bold; letter-spacing: 2px; border-radius: 9999px; line-height: 1;">
                                 COMPRAR AGORA
                             </a>
-                            <div class="text-[9px] text-brand-light/30 italic font-mono">Transição graduada do azul #2E86E8 ao #6FA8F5.</div>
+                            <div class="text-[9px] text-brand-light/30 leading-relaxed italic font-mono">Transição graduada do azul #2E86E8 ao #6FA8F5.</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Inputs and Focus states -->
-            <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 mb-8 reveal">
+            <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 mb-8 reveal font-sans">
                 <h3 class="text-xl font-serif text-white mb-6">Campos de Formulário (Focus States)</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Text Input -->
                     <div class="space-y-4">
                         <div>
                             <label class="text-[9px] uppercase tracking-wider text-brand-light/40 ml-1 block mb-1">Input de Texto (Normal)</label>
-                            <input class="w-full rounded-lg px-4 py-3 text-xs text-white tech-input placeholder-brand-light/20" placeholder="Seu nome completo" type="text"/>
+                            <input class="w-full rounded-lg px-4 py-3.5 text-xs text-white tech-input placeholder-brand-light/20" placeholder="Seu nome completo" type="text"/>
                         </div>
                         <div>
                             <label class="text-[9px] uppercase tracking-wider text-brand-light/40 ml-1 block mb-1">Input de Texto (Simulated Focus)</label>
-                            <input class="w-full rounded-lg px-4 py-3 text-xs text-white placeholder-brand-light/20" style="background: rgba(212, 180, 122, 0.05); border: 1px solid #D4B47A; outline: none; box-shadow: 0 0 15px rgba(212, 180, 122, 0.15);" placeholder="corp@email.com" type="email" value="Fernanda@advocacia.com.br"/>
+                            <input class="w-full rounded-lg px-4 py-3.5 text-xs text-white placeholder-brand-light/20" style="background: rgba(212, 180, 122, 0.05); border: 1px solid #D4B47A; outline: none; box-shadow: 0 0 15px rgba(212, 180, 122, 0.15);" placeholder="corp@email.com" type="email" value="Fernanda@advocacia.com.br"/>
                         </div>
                     </div>
                     <!-- Textarea -->
                     <div class="space-y-4">
                         <div>
                             <label class="text-[9px] uppercase tracking-wider text-brand-light/40 ml-1 block mb-1">Área de Texto (Normal)</label>
-                            <textarea class="w-full rounded-lg px-4 py-3 text-xs text-white tech-input placeholder-brand-light/20 resize-none" placeholder="Escreva breve resumo do seu caso..." rows="4"></textarea>
+                            <textarea class="w-full rounded-lg px-4 py-3.5 text-xs text-white tech-input placeholder-brand-light/20 resize-none" placeholder="Escreva breve resumo do seu caso..." rows="4"></textarea>
                         </div>
                     </div>
                 </div>
@@ -645,11 +647,11 @@
                     <!-- Bento Wide Card -->
                     <div class="md:col-span-2 rounded-2xl glass-panel p-6 relative overflow-hidden group transition-all duration-300">
                         <div class="absolute top-0 right-0 w-64 h-64 bg-brand-purple/5 blur-[50px] rounded-full pointer-events-none transition-opacity opacity-50 group-hover:opacity-100"></div>
-                        <div class="relative z-10 flex flex-col justify-between h-full min-h-[180px]">
+                        <div class="relative z-10 flex flex-col justify-between h-full min-h-[190px] font-sans">
                             <div>
                                 <span class="text-[8px] uppercase tracking-widest text-brand-gold font-bold">Bento Layout</span>
                                 <h4 class="text-lg font-serif text-white mt-1 mb-2">Painel de Vidro Amplo (.glass-panel)</h4>
-                                <p class="text-brand-light/50 text-xs font-light leading-relaxed max-w-md">
+                                <p class="text-brand-light/50 text-xs font-light leading-loose tracking-wide max-w-md">
                                     Base estrutural que utiliza gradientes sutis, desfoque de fundo e borda fina de 1px com 8% de opacidade sobre a cor do painel sólido #1A3566.
                                 </p>
                             </div>
@@ -662,14 +664,14 @@
 
                     <!-- Testimonial/Citation Card -->
                     <div class="md:col-span-1 rounded-2xl glass-panel p-6 relative overflow-hidden group transition-all duration-300">
-                        <div class="relative z-10 flex flex-col justify-between h-full min-h-[180px]">
+                        <div class="relative z-10 flex flex-col justify-between h-full min-h-[190px]">
                             <div>
                                 <i data-lucide="quote" class="w-6 h-6 text-brand-gold mb-3 opacity-30"></i>
-                                <p class="text-brand-light/70 italic text-xs leading-relaxed mb-4">
+                                <p class="text-brand-light/75 italic text-xs leading-loose tracking-wide mb-4">
                                     "A excelência jurídica é construída com obsessão cirúrgica por detalhes."
                                 </p>
                             </div>
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-2 font-sans">
                                 <div class="w-6 h-6 rounded-full bg-brand-gold/20 flex items-center justify-center">
                                     <i data-lucide="award" class="w-3.5 h-3.5 text-brand-gold"></i>
                                 </div>
@@ -687,20 +689,20 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
                 
                 <!-- 1. Live Modal Showcase -->
-                <div class="glass-panel rounded-2xl p-6 border border-white/5 flex flex-col justify-between min-h-[220px]">
+                <div class="glass-panel rounded-2xl p-6 border border-white/5 flex flex-col justify-between min-h-[220px] font-sans">
                     <div>
                         <h4 class="text-sm font-bold text-white mb-2">Janelas Modais (Premium Modal)</h4>
-                        <p class="text-xs text-brand-light/50 font-light leading-relaxed mb-4">
+                        <p class="text-xs text-brand-light/50 font-light leading-loose tracking-wide mb-4">
                             Utiliza desfocagem ambiental ativa sobre o conteúdo de fundo em azul marinho #0E2347 e transições de escala.
                         </p>
                     </div>
-                    <button onclick="openDemoModal()" class="w-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-gold/30 text-white px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all" type="button">
+                    <button onclick="openDemoModal()" class="w-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-gold/30 text-white px-4 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all" type="button">
                         Abrir Modal Teste
                     </button>
                 </div>
 
                 <!-- 2. Badges & Indicators -->
-                <div class="glass-panel rounded-2xl p-6 border border-white/5 flex flex-col justify-between min-h-[220px]">
+                <div class="glass-panel rounded-2xl p-6 border border-white/5 flex flex-col justify-between min-h-[220px] font-sans">
                     <div>
                         <h4 class="text-sm font-bold text-white mb-4">Badges & Indicadores de Status</h4>
                         <div class="space-y-3">
@@ -727,17 +729,17 @@
                 </div>
 
                 <!-- 3. Tooltips Block -->
-                <div class="glass-panel rounded-2xl p-6 border border-white/5 flex flex-col justify-between min-h-[220px]">
+                <div class="glass-panel rounded-2xl p-6 border border-white/5 flex flex-col justify-between min-h-[220px] font-sans">
                     <div>
                         <h4 class="text-sm font-bold text-white mb-2">Dicas Flutuantes (Tooltips)</h4>
-                        <p class="text-xs text-brand-light/50 font-light leading-relaxed mb-6">
+                        <p class="text-xs text-brand-light/50 font-light leading-loose tracking-wide mb-6">
                             Posicionadas absolutamente acima do elemento ativador, surgindo suavemente com desvanecimento.
                         </p>
                         
                         <!-- Tooltip anchor structure -->
                         <div class="relative inline-block tooltip-trigger">
                             <span class="text-xs text-brand-gold underline decoration-dotted cursor-help font-medium">Passe o mouse aqui</span>
-                            <div class="tooltip-box absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-32 p-2 bg-brand-panel border border-brand-gold/30 text-[9px] text-brand-light/80 rounded-lg shadow-xl text-center pointer-events-none opacity-0 scale-95 transition-all duration-300 origin-bottom">
+                            <div class="tooltip-box absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-32 p-2.5 bg-brand-panel border border-brand-gold/30 text-[9px] text-brand-light/80 rounded-lg shadow-xl text-center pointer-events-none opacity-0 scale-95 transition-all duration-300 origin-bottom leading-relaxed">
                                 Comunicação Segura &amp; Criptografada SSL.
                                 <span class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-brand-panel"></span>
                             </div>
@@ -847,15 +849,15 @@
                 <div class="h-[1px] w-20 bg-brand-gold/30 mt-3"></div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 reveal">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 reveal animate-fade">
                 <!-- Entrance triggers demonstration -->
                 <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/5 flex flex-col justify-between min-h-[300px]">
                     <div>
                         <h3 class="text-xl font-serif text-white mb-2">Entrada Fluida (.reveal)</h3>
-                        <p class="text-xs text-brand-light/40 mb-6">Suave subida com atenuação cúbica de 0.9s e desfoque inteligente. Perfeito para surgimento progressivo de seções durante o rolamento.</p>
+                        <p class="text-xs text-brand-light/40 mb-6 font-sans leading-relaxed">Suave subida com atenuação cúbica de 0.9s e desfoque inteligente. Perfeito para surgimento progressivo de seções durante o rolamento.</p>
                         
                         <div class="flex justify-center py-6">
-                            <div id="reveal-target" class="reveal active bg-brand-panel border border-brand-gold/30 rounded-2xl p-5 text-center max-w-xs shadow-lg">
+                            <div id="reveal-target" class="reveal active bg-brand-panel border border-brand-gold/30 rounded-2xl p-5 text-center max-w-xs shadow-lg font-sans">
                                 <i data-lucide="shield-check" class="w-8 h-8 text-brand-gold mx-auto mb-2 animate-[spin_10s_linear_infinite]"></i>
                                 <h4 class="text-xs font-bold text-white uppercase tracking-wider">Cartão Revelador</h4>
                                 <p class="text-[9px] text-brand-light/50 mt-1 font-mono">transition: cubic-bezier(0.16, 1, 0.3, 1)</p>
@@ -863,7 +865,7 @@
                         </div>
                     </div>
                     
-                    <button onclick="triggerRevealSpec()" class="w-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-pink/40 text-white px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all mt-4 font-sans" type="button">
+                    <button onclick="triggerRevealSpec()" class="w-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-pink/40 text-white px-4 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all mt-4 font-sans" type="button">
                         Repetir Animação de Entrada
                     </button>
                 </div>
@@ -933,14 +935,14 @@
                     <i data-lucide="book-open" class="w-6 h-6"></i>
                 </div>
                 <h3 class="text-2xl font-serif text-white">Cópia de Demonstração</h3>
-                <p class="text-xs text-brand-light/60 leading-relaxed font-light font-sans">
+                <p class="text-xs text-brand-light/70 leading-loose tracking-wide font-light font-sans">
                     Esta é uma demonstração de modal ativo do sistema. O fundo foi escurecido e desfocado com azul marinho #0E2347 para prender a atenção do usuário no conteúdo de destaque.
                 </p>
                 <div class="pt-4 flex gap-4 font-sans">
-                    <button onclick="closeDemoModal()" class="flex-1 bg-white/5 border border-white/10 text-white px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-colors" type="button">
+                    <button onclick="closeDemoModal()" class="flex-1 bg-white/5 border border-white/10 text-white px-4 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-colors" type="button">
                         Fechar Janela
                     </button>
-                    <a class="flex-1 bg-brand-gold text-brand-dark px-4 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-center hover:bg-white transition-colors inline-block" href="https://www.amazon.com/Confessions-Division-1-Athlete-Jim-Karas/dp/1638488517" target="_blank">
+                    <a class="flex-1 bg-brand-gold text-brand-dark px-4 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest text-center hover:bg-white transition-colors inline-block" href="https://www.amazon.com/Confessions-Division-1-Athlete-Jim-Karas/dp/1638488517" target="_blank">
                         Garantir Cópia
                     </a>
                 </div>
@@ -951,7 +953,7 @@
     <!-- Footer -->
     <footer class="border-t border-white/5 bg-[#0E2347] py-12">
         <div class="container mx-auto px-6 max-w-6xl">
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 font-sans">
                 <span class="text-brand-light/20 text-[10px] font-mono">© 2026 Dra. Fernanda. Todos os direitos reservados. Design System Showcase.</span>
                 <div class="flex gap-4">
                     <i class="w-4 h-4 text-brand-light/30 hover:text-white cursor-pointer transition-colors" data-lucide="linkedin"></i>
@@ -996,6 +998,7 @@
             }, 50);
         }
 
+        // Close Modal controls
         function closeDemoModal() {
             const modal = document.getElementById('demo-modal');
             modal.classList.add('opacity-0');
