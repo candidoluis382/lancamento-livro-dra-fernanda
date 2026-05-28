@@ -8,8 +8,19 @@
     
     <!-- Fonts: Poppins (300, 400, 600) from Google Fonts CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Preconnect to CDNs -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+
+    <!-- Preload LCP Image -->
+    <link rel="preload" href="assets/book-mockup.webp" as="image" type="image/webp" fetchpriority="high">
     
     <!-- Webflow Stylesheet (Local copy) -->
     <link href="assets/css/webflow.css" rel="stylesheet" type="text/css"/>
@@ -351,6 +362,8 @@
                             <img alt="Mockup do livro Homologação de Sentença Estrangeira no Brasil da advogada Fernanda Nelsen Teodoro Decesaro" 
                                  class="w-full mx-auto select-none filter drop-shadow-[-15px_20px_25px_rgba(0,0,0,0.65)]" 
                                  src="assets/book-mockup.webp"
+                                 width="1086"
+                                 height="1448"
                                  fetchpriority="high"/>
                         </div>
                     </div>
@@ -532,6 +545,8 @@
                             <img alt="Mockup contendo laptop, tablet e smartphone demonstrando os capítulos e o conteúdo do livro da Dra. Fernanda" 
                                  class="w-full mx-auto select-none filter drop-shadow-[-12px_18px_24px_rgba(0,0,0,0.55)] transition-transform duration-500 hover:scale-[1.02]" 
                                  src="assets/book-anel.webp"
+                                 width="1186"
+                                 height="941"
                                  loading="lazy"/>
                         </div>
                     </div>
@@ -747,6 +762,8 @@
                             <img alt="Fernanda Nelsen Teodoro Decesaro - Autora do livro" 
                                  class="w-full object-cover rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.55)] select-none transition-transform duration-500 hover:scale-[1.02]" 
                                  src="assets/foto-expert-fernanda.webp"
+                                 width="1000"
+                                 height="1573"
                                  loading="lazy"/>
                         </div>
                     </div>
@@ -1256,11 +1273,14 @@
                     
                     if (!isOpen) {
                         item.classList.add('accordion-active');
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        if (icon) {
-                            icon.style.transform = 'rotate(45deg)';
-                            icon.style.color = '#D4B47A'; // brand-gold when active
-                        }
+                        const targetHeight = content.scrollHeight + "px";
+                        requestAnimationFrame(() => {
+                            content.style.maxHeight = targetHeight;
+                            if (icon) {
+                                icon.style.transform = 'rotate(45deg)';
+                                icon.style.color = '#D4B47A'; // brand-gold when active
+                            }
+                        });
                     }
                     
                     // Refresh GSAP ScrollTrigger and Lenis to recalculate layout dimensions
