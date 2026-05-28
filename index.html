@@ -494,6 +494,152 @@
 
             </div>
         </section>
+
+        <!-- Section 3: Detailed Accordion Content -->
+        <section id="detalhes" class="relative py-24 md:py-32 overflow-hidden bg-transparent" style="background: radial-gradient(circle at 50% 50%, rgba(212, 180, 122, 0.03) 0%, rgba(14, 35, 71, 0) 70%);">
+            <!-- Background glow for Section 3 -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-brand-purple/5 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse-slow"></div>
+
+            <div class="container mx-auto px-6 max-w-6xl relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left Column: Devices perspective showcase -->
+                    <div class="lg:col-span-6 flex justify-center items-center relative sec3-image-reveal opacity-0 scale-95">
+                        <div class="absolute inset-0 bg-brand-purple/10 blur-[80px] rounded-full pointer-events-none -z-10 animate-pulse-slow"></div>
+                        <div class="animate-float w-full max-w-[460px] lg:max-w-none relative">
+                            <img alt="Mockup contendo laptop, tablet e smartphone demonstrando os capítulos e o conteúdo do livro da Dra. Fernanda" 
+                                 class="w-full mx-auto select-none filter drop-shadow-[-12px_18px_24px_rgba(0,0,0,0.55)] transition-transform duration-500 hover:scale-[1.02]" 
+                                 src="assets/book-anel.webp"
+                                 loading="lazy"/>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Pill, Title, Subtitle, Accordions -->
+                    <div class="lg:col-span-6 text-left flex flex-col justify-center space-y-6">
+                        <!-- Pill Tag -->
+                        <div class="sec3-reveal opacity-0 translate-y-4">
+                            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-brand-pink/20 bg-brand-purple/10 backdrop-blur-md">
+                                <span class="text-[9px] font-bold text-brand-pink tracking-[0.2em] uppercase">Conteúdo da obra</span>
+                            </div>
+                        </div>
+
+                        <!-- H2 Title -->
+                        <h2 class="sec3-reveal text-3xl md:text-5xl font-serif text-white tracking-tight leading-[1.3] opacity-0 translate-y-4">
+                            Esta é a estrutura dos temas <br class="hidden md:inline"/>que você vai encontrar no livro.
+                        </h2>
+
+                        <!-- Subtitle -->
+                        <p class="sec3-reveal text-sm font-sans font-light text-brand-light/75 max-w-xl leading-relaxed tracking-wide opacity-0 translate-y-4">
+                            Clique em cada capítulo para ver as subdivisões e os tópicos abordados em cada um deles.
+                        </p>
+
+                        <!-- Accordions -->
+                        <div class="sec3-reveal accordion-container space-y-4 pt-4 opacity-0 translate-y-4">
+                            <!-- Accordion Item 1 -->
+                            <div class="accordion-item border-b border-white/10 pb-4 transition-all duration-300">
+                                <button class="accordion-header flex items-center justify-between w-full text-left py-3 cursor-pointer select-none group focus:outline-none">
+                                    <span class="text-base md:text-lg font-serif text-white group-hover:text-brand-gold transition-colors duration-300 font-medium">
+                                        1. Fundamentos e Soberania
+                                    </span>
+                                    <span class="accordion-icon w-6 h-6 flex items-center justify-center text-brand-pink transition-transform duration-300 ease-out">
+                                        <i data-lucide="plus" class="w-5 h-5"></i>
+                                    </span>
+                                </button>
+                                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                    <ul class="space-y-3 pt-2 pb-4 pl-2 text-xs md:text-sm font-sans font-light text-brand-light/70 leading-relaxed">
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>Jurisdição e os limites do poder estatal</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>Cooperação jurídica internacional</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>A ordem pública como filtro de reconhecimento</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>Tratados e convenções aplicáveis ao Brasil</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 2 -->
+                            <div class="accordion-item border-b border-white/10 pb-4 transition-all duration-300">
+                                <button class="accordion-header flex items-center justify-between w-full text-left py-3 cursor-pointer select-none group focus:outline-none">
+                                    <span class="text-base md:text-lg font-serif text-white group-hover:text-brand-gold transition-colors duration-300 font-medium">
+                                        2. Requisitos e Procedimento no STJ
+                                    </span>
+                                    <span class="accordion-icon w-6 h-6 flex items-center justify-center text-brand-pink transition-transform duration-300 ease-out">
+                                        <i data-lucide="plus" class="w-5 h-5"></i>
+                                    </span>
+                                </button>
+                                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                    <ul class="space-y-3 pt-2 pb-4 pl-2 text-xs md:text-sm font-sans font-light text-brand-light/70 leading-relaxed">
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>Competência da Corte Especial</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>Documentos e formalidades exigidas</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>Tradução juramentada e legalização consular / apostilamento</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>Citação, contraditório e trânsito em julgado no país de origem</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 3 -->
+                            <div class="accordion-item border-b border-white/10 pb-4 transition-all duration-300">
+                                <button class="accordion-header flex items-center justify-between w-full text-left py-3 cursor-pointer select-none group focus:outline-none">
+                                    <span class="text-base md:text-lg font-serif text-white group-hover:text-brand-gold transition-colors duration-300 font-medium">
+                                        3. Aplicação Prática por Tipo de Decisão
+                                    </span>
+                                    <span class="accordion-icon w-6 h-6 flex items-center justify-center text-brand-pink transition-transform duration-300 ease-out">
+                                        <i data-lucide="plus" class="w-5 h-5"></i>
+                                    </span>
+                                </button>
+                                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                    <ul class="space-y-3 pt-2 pb-4 pl-2 text-xs md:text-sm font-sans font-light text-brand-light/70 leading-relaxed">
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>Divórcios e dissolução de união obtidos no exterior</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>Sucessões e partilha de bens em múltiplos países</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>Guarda de filhos e adoções internacionais</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0"></span>
+                                            <span>Sentenças arbitrais e contratos transnacionais</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>               </div>
+
+            </div>
+        </section>
     </main>
 
     <!-- Scripts initialization -->
@@ -751,15 +897,76 @@
                     stagger: 0.12,
                     ease: 'power3.out'
                 });
+
+                // Section 3 reveals
+                gsap.to('.sec3-reveal', {
+                    scrollTrigger: {
+                        trigger: '#detalhes',
+                        start: 'top 80%',
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.0,
+                    stagger: 0.15,
+                    ease: 'power3.out'
+                });
+
+                gsap.to('.sec3-image-reveal', {
+                    scrollTrigger: {
+                        trigger: '#detalhes',
+                        start: 'top 75%',
+                    },
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.2,
+                    ease: 'power3.out'
+                });
             } else {
-                // Instantly set Section 2 values
-                gsap.set('.sec2-reveal, .sec2-reveal-left, .sec2-reveal-center, .sec2-reveal-right, .sec2-card', {
+                // Instantly set Section 2 and Section 3 values
+                gsap.set('.sec2-reveal, .sec2-reveal-left, .sec2-reveal-center, .sec2-reveal-right, .sec2-card, .sec3-reveal, .sec3-image-reveal', {
                     opacity: 1,
                     y: 0,
                     x: 0,
                     scale: 1
                 });
             }
+
+            // 8. Accordion Toggle Logic
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = item.querySelector('.accordion-icon');
+                
+                header.addEventListener('click', () => {
+                    const isOpen = item.classList.contains('accordion-active');
+                    
+                    // Close all other items
+                    accordionItems.forEach(otherItem => {
+                        otherItem.classList.remove('accordion-active');
+                        otherItem.querySelector('.accordion-content').style.maxHeight = null;
+                        const otherIcon = otherItem.querySelector('.accordion-icon');
+                        if (otherIcon) {
+                            otherIcon.style.transform = 'rotate(0deg)';
+                            otherIcon.style.color = ''; // reset color to inherit brand-pink
+                        }
+                    });
+                    
+                    if (!isOpen) {
+                        item.classList.add('accordion-active');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        if (icon) {
+                            icon.style.transform = 'rotate(45deg)';
+                            icon.style.color = '#D4B47A'; // brand-gold when active
+                        }
+                    }
+                    
+                    // Refresh GSAP ScrollTrigger to recalculate layout dimensions
+                    setTimeout(() => {
+                        if (window.ScrollTrigger) ScrollTrigger.refresh();
+                    }, 300);
+                });
+            });
 
         });
     </script>
