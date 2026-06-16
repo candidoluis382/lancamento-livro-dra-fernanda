@@ -821,7 +821,11 @@
                        class="glass-panel rounded-2xl p-6 flex flex-col items-center justify-between text-center transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold/30 group">
                         <div class="space-y-4 flex flex-col items-center">
                             <div class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
-                                <i data-lucide="instagram" class="w-5 h-5"></i>
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
                             </div>
                             <h3 class="text-sm font-serif text-white font-medium group-hover:text-brand-gold transition-colors duration-300">
                                 Publicação oficial da Juruá Editora no Instagram
@@ -838,7 +842,9 @@
                        class="glass-panel rounded-2xl p-6 flex flex-col items-center justify-between text-center transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold/30 group">
                         <div class="space-y-4 flex flex-col items-center">
                             <div class="w-12 h-12 rounded-full bg-brand-pink/10 flex items-center justify-center text-brand-pink group-hover:bg-brand-pink group-hover:text-brand-dark transition-colors duration-300">
-                                <i data-lucide="facebook" class="w-5 h-5"></i>
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
                             </div>
                             <h3 class="text-sm font-serif text-white font-medium group-hover:text-brand-gold transition-colors duration-300">
                                 Publicação oficial da Juruá Editora no Facebook
@@ -855,7 +861,13 @@
                        class="glass-panel rounded-2xl p-6 flex flex-col items-center justify-between text-center transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold/30 group">
                         <div class="space-y-4 flex flex-col items-center">
                             <div class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
-                                <i data-lucide="share-2" class="w-5 h-5"></i>
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
                             </div>
                             <h3 class="text-sm font-serif text-white font-medium group-hover:text-brand-gold transition-colors duration-300">
                                 Divulgação nas redes sociais
@@ -1068,6 +1080,22 @@
                 lenis.raf(time * 1000);
             });
             gsap.ticker.lagSmoothing(0);
+
+            // Smooth scroll to anchors using Lenis scrollTo
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        lenis.scrollTo(target, {
+                            offset: 0,
+                            duration: 1.2
+                        });
+                    }
+                });
+            });
 
             // Recalculate layout dimensions on load and image load to prevent Lenis scroll cutoff bugs
             const refreshScroll = () => {
