@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire Design System Showcase | Pattern Library</title>
+    <meta name="description" content="Living design system and pattern library for the Empire Barbershop template. Built with Tailwind CSS, showcasing typography, color tokens, visual components, layout grids, and interactive states.">
+    
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconify -->
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        neutral: {
+                            925: '#0f0f0f', // Custom dark
+                            950: '#0a0a0a',
+                        }
+                    },
+                    letterSpacing: {
+                        tighter: '-0.04em',
+                        tight: '-0.02em',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom scrollbar for premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* Hide details marker */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        /* Iframe container tweaks */
+        .spline-bg iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    
+    <!-- Load Font stylesheets matching original -->
+    <link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style>
+    <link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">.font-roboto { font-family: 'Roboto', sans-serif !important; }</style>
+    <link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">.font-montserrat { font-family: 'Montserrat', sans-serif !important; }</style>
+    <link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">.font-poppins { font-family: 'Poppins', sans-serif !important; }</style>
+    <link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">.font-playfair { font-family: 'Playfair Display', serif !important; }</style>
+</head>
+
+<body class="bg-neutral-950 text-neutral-300 font-sans antialiased selection:bg-white/20 selection:text-white">
+
+    <!-- Top Fixed Horizontal Navigation (Anchored) -->
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/5 bg-neutral-950/50 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-6 py-4">
+            <a href="#" class="flex items-center space-x-2 group">
+                <span class="self-center text-xl font-semibold whitespace-nowrap text-white tracking-tighter group-hover:text-neutral-300 transition-colors">DESIGN SYSTEM</span>
+            </a>
+            
+            <!-- Mobile Menu Button -->
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-neutral-400 rounded-lg md:hidden hover:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-600">
+                <span class="sr-only">Open menu</span>
+                <iconify-icon icon="lucide:menu" width="24" height="24" stroke-width="1.5"></iconify-icon>
+            </button>
+
+            <!-- Desktop Menu -->
+            <div class="hidden w-full md:block md:w-auto">
+                <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-neutral-800 rounded-lg bg-neutral-900 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
+                    <li><a href="#home" class="block py-2 px-3 text-neutral-400 hover:text-white rounded md:p-0 transition-colors text-sm">Hero</a></li>
+                    <li><a href="#typography" class="block py-2 px-3 text-neutral-400 hover:text-white rounded md:p-0 transition-colors text-sm">Typography</a></li>
+                    <li><a href="#colors" class="block py-2 px-3 text-neutral-400 hover:text-white rounded md:p-0 transition-colors text-sm">Colors &amp; Surfaces</a></li>
+                    <li><a href="#components" class="block py-2 px-3 text-neutral-400 hover:text-white rounded md:p-0 transition-colors text-sm">Components</a></li>
+                    <li><a href="#layout" class="block py-2 px-3 text-neutral-400 hover:text-white rounded md:p-0 transition-colors text-sm">Layout</a></li>
+                    <li><a href="#motion" class="block py-2 px-3 text-neutral-400 hover:text-white rounded md:p-0 transition-colors text-sm">Motion</a></li>
+                    <li><a href="#icons" class="block py-2 px-3 text-neutral-400 hover:text-white rounded md:p-0 transition-colors text-sm">Icons</a></li>
+                </ul>
+            </div>
+            
+            <div class="hidden md:block">
+                <a href="index.html" class="text-white bg-white/10 backdrop-blur-sm border border-white/10 hover:bg-white hover:text-neutral-950 font-medium rounded text-sm px-5 py-2.5 focus:outline-none transition-all duration-300 tracking-tight">Back to Website</a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden w-full bg-neutral-900 border-b border-neutral-800">
+             <ul class="flex flex-col p-4 font-medium">
+                <li><a href="#home" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block py-3 px-3 text-neutral-400 border-b border-neutral-800 hover:text-white">Hero</a></li>
+                <li><a href="#typography" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block py-3 px-3 text-neutral-400 border-b border-neutral-800 hover:text-white">Typography</a></li>
+                <li><a href="#colors" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block py-3 px-3 text-neutral-400 border-b border-neutral-800 hover:text-white">Colors &amp; Surfaces</a></li>
+                <li><a href="#components" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block py-3 px-3 text-neutral-400 border-b border-neutral-800 hover:text-white">Components</a></li>
+                <li><a href="#layout" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block py-3 px-3 text-neutral-400 border-b border-neutral-800 hover:text-white">Layout</a></li>
+                <li><a href="#motion" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block py-3 px-3 text-neutral-400 border-b border-neutral-800 hover:text-white">Motion</a></li>
+                <li><a href="#icons" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block py-3 px-3 text-neutral-400 hover:text-white">Icons</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 0) Hero (Exact Clone, Text Adapted) -->
+    <section id="home" class="relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-neutral-950">
+        
+        <!-- Spline Background Container -->
+        <div class="spline-bg absolute inset-0 w-full h-full z-0">
+             <!-- iframe matches original exactly -->
+             <iframe src="https://my.spline.design/retrofuturismbganimation-OOfTQTYrMn6YWLRk15W2SLmM/" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+
+        <!-- Gradient Overlays for Readability & Transition -->
+        <div class="absolute inset-0 z-0 bg-gradient-to-b from-neutral-950/80 via-transparent to-neutral-950 pointer-events-none"></div>
+        <div class="absolute inset-0 z-0 bg-neutral-950/20 pointer-events-none"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center mt-16 pointer-events-none">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-semibold text-white tracking-tighter mb-6 leading-[1.1] drop-shadow-2xl">
+                Design System.
+                <span class="text-neutral-400">Empire Studio.</span>
+            </h1>
+            <p class="mt-6 text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed font-light drop-shadow-lg">
+                A premium showcase and pattern library for the Empire Barbershop template. Reusing original typography scale, Tailwind color tokens, component structures, grids, and assets.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center pointer-events-auto">
+                <a href="#typography" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded bg-white px-8 font-medium text-neutral-950 transition-all duration-300 hover:bg-neutral-200 hover:scale-[1.02]">
+                    <span class="mr-2">Explore Specs</span>
+                    <iconify-icon icon="lucide:arrow-right" width="18" height="18" class="transition-transform group-hover:translate-x-1" stroke-width="1.5"></iconify-icon>
+                </a>
+                <a href="#components" class="inline-flex h-12 items-center justify-center rounded border border-white/20 bg-black/20 backdrop-blur-sm px-8 font-medium text-white transition-colors hover:bg-white/10">
+                    View Components
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1) Typography Section -->
+    <section id="typography" class="bg-neutral-925 py-24 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-2xl mb-16">
+                <p class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-2">01 / Typography</p>
+                <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">Typographic Scale &amp; Hierarchy</h2>
+                <p class="text-neutral-400">Spec sheet for titles, paragraphs, and labels used across the template, using the primary Inter font family.</p>
+            </div>
+
+            <!-- Typography Spec Table -->
+            <div class="bg-neutral-950 rounded-xl border border-white/5 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse text-left text-sm">
+                        <thead class="bg-white/5 text-white font-medium border-b border-white/5">
+                            <tr>
+                                <th class="p-6 w-1/4">Style Name</th>
+                                <th class="p-6 w-1/2">Live Preview</th>
+                                <th class="p-6 text-right w-1/4">Font Size / Line Height</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-neutral-400">
+                            <!-- Heading 1 -->
+                            <tr class="hover:bg-white/[0.01] transition-colors">
+                                <td class="p-6 font-medium text-white valign-middle">Heading 1</td>
+                                <td class="p-6">
+                                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tighter leading-[1.1]">Precision Cuts.</h1>
+                                </td>
+                                <td class="p-6 text-right font-mono text-xs text-white/60">
+                                    <span class="hidden lg:inline">96px / 105px (-0.04em)</span>
+                                    <span class="hidden md:inline lg:hidden">72px / 79px (-0.04em)</span>
+                                    <span class="md:hidden">48px / 52px (-0.04em)</span>
+                                </td>
+                            </tr>
+                            <!-- Heading 2 -->
+                            <tr class="hover:bg-white/[0.01] transition-colors">
+                                <td class="p-6 font-medium text-white">Heading 2</td>
+                                <td class="p-6">
+                                    <h2 class="text-2xl md:text-3xl font-semibold text-white tracking-tight">More than just a haircut.</h2>
+                                </td>
+                                <td class="p-6 text-right font-mono text-xs text-white/60">
+                                    <span class="hidden md:inline">36px / 40px (-0.02em)</span>
+                                    <span class="md:hidden">30px / 36px (-0.02em)</span>
+                                </td>
+                            </tr>
+                            <!-- Heading 3 (Visual Title) -->
+                            <tr class="hover:bg-white/[0.01] transition-colors">
+                                <td class="p-6 font-medium text-white">Heading 3 (Section / Card)</td>
+                                <td class="p-6">
+                                    <h3 class="text-lg md:text-xl font-semibold text-white tracking-tight">Precision Haircut</h3>
+                                </td>
+                                <td class="p-6 text-right font-mono text-xs text-white/60">
+                                    <span class="hidden md:inline">20px / 28px</span>
+                                    <span class="md:hidden">18px / 26px</span>
+                                </td>
+                            </tr>
+                            <!-- Heading 4 (Price title / Info) -->
+                            <tr class="hover:bg-white/[0.01] transition-colors">
+                                <td class="p-6 font-medium text-white">Heading 4</td>
+                                <td class="p-6">
+                                    <h4 class="text-base md:text-lg font-medium text-white">Dry Cut</h4>
+                                </td>
+                                <td class="p-6 text-right font-mono text-xs text-white/60">
+                                    <span class="hidden md:inline">18px / 28px</span>
+                                    <span class="md:hidden">16px / 24px</span>
+                                </td>
+                            </tr>
+                            <!-- Bold L -->
+                            <tr class="hover:bg-white/[0.01] transition-colors">
+                                <td class="p-6 font-medium text-white">Bold L</td>
+                                <td class="p-6">
+                                    <span class="text-lg font-bold tracking-tight text-white">EMPIRE</span>
+                                </td>
+                                <td class="p-6 text-right font-mono text-xs text-white/60">18px / 28px (Bold)</td>
+                            </tr>
+                            <!-- Bold M -->
+                            <tr class="hover:bg-white/[0.01] transition-colors">
+                                <td class="p-6 font-medium text-white">Bold M</td>
+                                <td class="p-6">
+                                    <span class="px-2 py-0.5 rounded bg-neutral-800 text-[10px] text-white uppercase tracking-wider font-semibold">Popular</span>
+                                </td>
+                                <td class="p-6 text-right font-mono text-xs text-white/60">10px / 14px (Semibold)</td>
+                            </tr>
+                            <!-- Bold S -->
+                            <tr class="hover:bg-white/[0.01] transition-colors">
+                                <td class="p-6 font-medium text-white">Bold S</td>
+                                <td class="p-6">
+                                    <span class="text-xs font-medium uppercase tracking-widest text-white/60">Atmosphere</span>
+                                </td>
+                                <td class="p-6 text-right font-mono text-xs text-white/60">12px / 16px (Medium)</td>
+                            </tr>
+                            <!-- Paragraph (Larger body) -->
+                            <tr class="hover:bg-white/[0.01] transition-colors">
+                                <td class="p-6 font-medium text-white">Paragraph (Hero body)</td>
+                                <td class="p-6">
+                                    <p class="text-base md:text-lg text-neutral-300 font-light leading-relaxed max-w-lg">Experience the art of grooming at Empire Barbershop. We combine traditional craftsmanship.</p>
+                                </td>
+                                <td class="p-6 text-right font-mono text-xs text-white/60">
+                                    <span class="hidden md:inline">18px / 28px (Light)</span>
+                                    <span class="md:hidden">16px / 24px (Light)</span>
+                                </td>
+                            </tr>
+                            <!-- Regular L -->
+                            <tr class="hover:bg-white/[0.01] transition-colors">
+                                <td class="p-6 font-medium text-white">Regular L</td>
+                                <td class="p-6">
+                                    <p class="text-base md:text-lg text-neutral-300 leading-relaxed">Conor O'Sullivan</p>
+                                </td>
+                                <td class="p-6 text-right font-mono text-xs text-white/60">18px / 28px (Regular)</td>
+                            </tr>
+                            <!-- Regular M -->
+                            <tr class="hover:bg-white/[0.01] transition-colors">
+                                <td class="p-6 font-medium text-white">Regular M (Standard Body)</td>
+                                <td class="p-6">
+                                    <p class="text-sm md:text-base text-neutral-400 leading-relaxed">At Empire Barbershop, we believe that a haircut is the foundation of a man's confidence.</p>
+                                </td>
+                                <td class="p-6 text-right font-mono text-xs text-white/60">16px / 24px (Regular)</td>
+                            </tr>
+                            <!-- Regular S -->
+                            <tr class="hover:bg-white/[0.01] transition-colors">
+                                <td class="p-6 font-medium text-white">Regular S</td>
+                                <td class="p-6">
+                                    <p class="text-xs md:text-sm text-neutral-500">Standard cut, no wash</p>
+                                </td>
+                                <td class="p-6 text-right font-mono text-xs text-white/60">14px / 20px (Regular)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2) Colors & Surfaces Section -->
+    <section id="colors" class="bg-neutral-950 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-2xl mb-16">
+                <p class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-2">02 / Colors &amp; Surfaces</p>
+                <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">Color Palette &amp; Surface Tokens</h2>
+                <p class="text-neutral-400">Harmonious dark color scale, border variants, and functional surface layers used to establish visual depth.</p>
+            </div>
+
+            <!-- Swatches Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Swatch 1: Page BG -->
+                <div class="bg-neutral-900 border border-white/5 p-4 rounded-xl flex flex-col justify-between h-48">
+                    <div class="w-full h-12 rounded bg-neutral-950 border border-white/5 mb-4"></div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Page Background</p>
+                        <p class="text-neutral-400 font-mono text-xs mt-1">bg-neutral-950</p>
+                        <p class="text-neutral-500 text-xs mt-0.5">Hex: #0a0a0a</p>
+                    </div>
+                </div>
+
+                <!-- Swatch 2: Section BG -->
+                <div class="bg-neutral-900 border border-white/5 p-4 rounded-xl flex flex-col justify-between h-48">
+                    <div class="w-full h-12 rounded bg-neutral-925 border border-white/5 mb-4"></div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Section Background</p>
+                        <p class="text-neutral-400 font-mono text-xs mt-1">bg-neutral-925</p>
+                        <p class="text-neutral-500 text-xs mt-0.5">Hex: #0f0f0f</p>
+                    </div>
+                </div>
+
+                <!-- Swatch 3: Component BG -->
+                <div class="bg-neutral-900 border border-white/5 p-4 rounded-xl flex flex-col justify-between h-48">
+                    <div class="w-full h-12 rounded bg-neutral-900 border border-white/5 mb-4"></div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Card/Component BG</p>
+                        <p class="text-neutral-400 font-mono text-xs mt-1">bg-neutral-900</p>
+                        <p class="text-neutral-500 text-xs mt-0.5">Hex: #171717</p>
+                    </div>
+                </div>
+
+                <!-- Swatch 4: Navbar Glass -->
+                <div class="bg-neutral-900 border border-white/5 p-4 rounded-xl flex flex-col justify-between h-48">
+                    <div class="w-full h-12 rounded bg-neutral-950/50 backdrop-blur-md border border-white/5 mb-4"></div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Glass Surface</p>
+                        <p class="text-neutral-400 font-mono text-xs mt-1">bg-neutral-950/50 backdrop-blur</p>
+                        <p class="text-neutral-500 text-xs mt-0.5">50% Opacity + Blur</p>
+                    </div>
+                </div>
+
+                <!-- Swatch 5: Accent White -->
+                <div class="bg-neutral-900 border border-white/5 p-4 rounded-xl flex flex-col justify-between h-48">
+                    <div class="w-full h-12 rounded bg-white mb-4"></div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Accent White</p>
+                        <p class="text-neutral-400 font-mono text-xs mt-1">bg-white</p>
+                        <p class="text-neutral-500 text-xs mt-0.5">Hex: #ffffff</p>
+                    </div>
+                </div>
+
+                <!-- Swatch 6: Rating Star -->
+                <div class="bg-neutral-900 border border-white/5 p-4 rounded-xl flex flex-col justify-between h-48">
+                    <div class="w-full h-12 rounded bg-amber-400 mb-4"></div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Accent Amber (Stars)</p>
+                        <p class="text-neutral-400 font-mono text-xs mt-1">text-amber-400</p>
+                        <p class="text-neutral-500 text-xs mt-0.5">Hex: #fbbf24</p>
+                    </div>
+                </div>
+
+                <!-- Swatch 7: Extra Light Border -->
+                <div class="bg-neutral-900 border border-white/5 p-4 rounded-xl flex flex-col justify-between h-48">
+                    <div class="w-full h-12 rounded border border-white/5 mb-4 flex items-center justify-center text-xs text-neutral-600 font-mono">5% Opacity</div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Extra Light Border</p>
+                        <p class="text-neutral-400 font-mono text-xs mt-1">border-white/5</p>
+                        <p class="text-neutral-500 text-xs mt-0.5">Used on inner cards</p>
+                    </div>
+                </div>
+
+                <!-- Swatch 8: Light Border -->
+                <div class="bg-neutral-900 border border-white/5 p-4 rounded-xl flex flex-col justify-between h-48">
+                    <div class="w-full h-12 rounded border border-white/10 mb-4 flex items-center justify-center text-xs text-neutral-600 font-mono">10% Opacity</div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Light Border</p>
+                        <p class="text-neutral-400 font-mono text-xs mt-1">border-white/10</p>
+                        <p class="text-neutral-500 text-xs mt-0.5">Used on major sections</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gradients & Overlays Showcase -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <!-- Gradient 1: Hero Top-to-Bottom -->
+                <div class="bg-neutral-900 border border-white/5 rounded-xl overflow-hidden">
+                    <div class="relative h-24 bg-neutral-950">
+                        <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-transparent to-neutral-950 pointer-events-none"></div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-white font-medium text-sm">Hero Top-to-Bottom Mask</p>
+                        <p class="text-neutral-400 font-mono text-xs mt-1">bg-gradient-to-b from-neutral-950/80 via-transparent to-neutral-950</p>
+                        <p class="text-neutral-500 text-xs mt-1">Softens spline background rendering, blending text into the page flow.</p>
+                    </div>
+                </div>
+
+                <!-- Gradient 2: Card Bottom-to-Top Overlay -->
+                <div class="bg-neutral-900 border border-white/5 rounded-xl overflow-hidden">
+                    <div class="relative h-24 bg-neutral-950">
+                        <div class="bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-90 absolute inset-0"></div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-white font-medium text-sm">Bottom Overlay Mask (Visual Block)</p>
+                        <p class="text-neutral-400 font-mono text-xs mt-1">bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-90</p>
+                        <p class="text-neutral-500 text-xs mt-1">Applied on Unsplash background cards to ensure text contrast at the bottom.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3) UI Components Section -->
+    <section id="components" class="bg-neutral-925 py-24 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-2xl mb-16">
+                <p class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-2">03 / UI Components</p>
+                <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">Component Library</h2>
+                <p class="text-neutral-400">Canonical building blocks extracted directly from original layouts. Reuses exact structures and native hover behaviors.</p>
+            </div>
+
+            <!-- Subsection: Buttons -->
+            <div class="mb-16">
+                <h3 class="text-xl font-semibold text-white mb-6 border-b border-white/5 pb-2">Buttons</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Button 1: Primary (White Solid) -->
+                    <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between">
+                        <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Primary CTA (Default &amp; Hover)</p>
+                        <div class="flex flex-col gap-4">
+                            <!-- Default state -->
+                            <a href="#book" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded bg-white px-8 font-medium text-neutral-950 transition-all duration-300 hover:bg-neutral-200">
+                                <span class="mr-2">Book Appointment</span>
+                                <iconify-icon icon="lucide:arrow-right" width="18" height="18" class="transition-transform group-hover:translate-x-1" stroke-width="1.5"></iconify-icon>
+                            </a>
+                        </div>
+                        <p class="text-neutral-400 text-xs mt-4">Solid white body, subtle scale + translate-x transform on arrow hover.</p>
+                    </div>
+
+                    <!-- Button 2: Secondary (Glass Dark) -->
+                    <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between">
+                        <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Secondary CTA (Default &amp; Hover)</p>
+                        <div class="flex flex-col gap-4">
+                            <a href="#services" class="inline-flex h-12 items-center justify-center rounded border border-white/20 bg-black/20 backdrop-blur-sm px-8 font-medium text-white transition-colors hover:bg-white/10">
+                                View Services
+                            </a>
+                        </div>
+                        <p class="text-neutral-400 text-xs mt-4">Glass border with black translucent body, highlights on hover with bg opacity change.</p>
+                    </div>
+
+                    <!-- Button 3: Navbar Mini-CTA -->
+                    <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between">
+                        <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Navbar CTA Button</p>
+                        <div class="flex items-center justify-center py-2">
+                            <a href="#book" class="text-white bg-white/10 backdrop-blur-sm border border-white/10 hover:bg-white hover:text-neutral-950 font-medium rounded text-sm px-5 py-2.5 focus:outline-none transition-all duration-300 tracking-tight">Book Appointment</a>
+                        </div>
+                        <p class="text-neutral-400 text-xs mt-4">Compact layout, glassmorphic styling, transitions to solid white background.</p>
+                    </div>
+
+                    <!-- Button 4: Block CTA -->
+                    <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between">
+                        <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Block Button (Footer)</p>
+                        <div class="flex flex-col gap-4">
+                            <a href="#book" class="inline-flex w-full items-center justify-center rounded bg-white py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-neutral-200">
+                                Book Appointment
+                            </a>
+                        </div>
+                        <p class="text-neutral-400 text-xs mt-4">Full-width solid CTA used inside forms or content columns to prompt actions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsection: Cards & Layout Components -->
+            <div class="mb-16">
+                <h3 class="text-xl font-semibold text-white mb-6 border-b border-white/5 pb-2">Cards &amp; Surface Elements</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Card 1: Service Card -->
+                    <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between">
+                        <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Service Card</p>
+                        <div class="group p-8 rounded-xl bg-neutral-950 border border-white/5 hover:border-white/10 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-neutral-900 flex items-center justify-center mb-6 text-white group-hover:bg-white group-hover:text-black transition-colors">
+                                <iconify-icon icon="lucide:scissors" width="24" height="24" stroke-width="1.5"></iconify-icon>
+                            </div>
+                            <h3 class="text-xl font-semibold text-white mb-3">Precision Haircut</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed mb-4">A tailored cut to suit your face shape and style preference. Finished with styling product.</p>
+                            <span class="text-sm font-medium text-white">From €20</span>
+                        </div>
+                        <p class="text-neutral-400 text-xs mt-4">Self-contained item. Highlights borders and swaps icon fill colors dynamically on hover.</p>
+                    </div>
+
+                    <!-- Card 2: Testimonial Card -->
+                    <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between">
+                        <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Testimonial Card</p>
+                        <div class="bg-neutral-900 p-8 rounded-xl relative text-left">
+                            <iconify-icon icon="lucide:quote" class="text-neutral-800 absolute top-6 right-6" width="40" height="40"></iconify-icon>
+                            <div class="flex text-amber-400 mb-4 gap-0.5">
+                                <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                                <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                                <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                                <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                                <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            </div>
+                            <p class="text-neutral-300 mb-6 text-sm leading-relaxed">"Best barber in Tallaght hands down. The fade is always clean and the lads are sound. Left feeling brand new."</p>
+                            <div>
+                                <p class="text-white font-medium text-sm">Conor O'Sullivan</p>
+                                <p class="text-neutral-500 text-xs">Regular Client</p>
+                            </div>
+                        </div>
+                        <p class="text-neutral-400 text-xs mt-4">Static component layer highlighting star ratings, user metadata and secondary quote watermark.</p>
+                    </div>
+
+                    <!-- Card 3: Blog/Journal Card -->
+                    <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between">
+                        <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Journal / Article Card</p>
+                        <article class="group cursor-pointer text-left">
+                            <div class="aspect-[4/3] bg-neutral-800 rounded-lg overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100" alt="Beard Care">
+                            </div>
+                            <span class="text-xs font-medium text-neutral-500 uppercase tracking-wider">Grooming</span>
+                            <h3 class="text-lg font-medium text-white mt-2 group-hover:text-neutral-300 transition-colors">5 Essential Tips for Beard Maintenance</h3>
+                        </article>
+                        <p class="text-neutral-400 text-xs mt-4">Media-focused card. Zooms internal image slightly and changes text color when parent container is hovered.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsection: Pricing & Indicators -->
+            <div class="mb-4">
+                <h3 class="text-xl font-semibold text-white mb-6 border-b border-white/5 pb-2">Pricing Items &amp; Key Indicators</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Price List Item -->
+                    <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl">
+                        <p class="text-neutral-500 text-xs uppercase tracking-wider mb-6">Price Row Component</p>
+                        <div class="space-y-4">
+                            <div class="flex items-end justify-between border-b border-neutral-800 pb-4 text-left">
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="text-lg font-medium text-white">Skin Fade</h4>
+                                        <span class="px-2 py-0.5 rounded-full bg-neutral-800 text-[10px] text-white uppercase tracking-wider font-semibold">Popular</span>
+                                    </div>
+                                    <p class="text-xs text-neutral-500 mt-1">Zero or foil finish</p>
+                                </div>
+                                <span class="text-lg font-semibold text-white">€25</span>
+                            </div>
+                        </div>
+                        <p class="text-neutral-400 text-xs mt-6">Split layout with vertical flex alignment. Integrates badges, descriptions, and a bold price label.</p>
+                    </div>
+
+                    <!-- Trust Stars & Metric -->
+                    <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between">
+                        <div>
+                            <p class="text-neutral-500 text-xs uppercase tracking-wider mb-6">Trust Badge &amp; Rating</p>
+                            <div class="flex items-center gap-4 text-left">
+                                <div class="flex items-center text-amber-400 gap-1">
+                                    <iconify-icon icon="lucide:star" width="20" height="20" class="fill-current"></iconify-icon>
+                                    <iconify-icon icon="lucide:star" width="20" height="20" class="fill-current"></iconify-icon>
+                                    <iconify-icon icon="lucide:star" width="20" height="20" class="fill-current"></iconify-icon>
+                                    <iconify-icon icon="lucide:star" width="20" height="20" class="fill-current"></iconify-icon>
+                                    <iconify-icon icon="lucide:star-half" width="20" height="20" class="fill-current"></iconify-icon>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-white font-medium leading-none">4.6 / 5 Rating</span>
+                                    <span class="text-sm text-neutral-500 mt-1">Based on 62 reviews</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-neutral-400 text-xs mt-6">Combines custom SVG star icon states with tabular metadata layouts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4) Layout & Spacing Section -->
+    <section id="layout" class="bg-neutral-950 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-2xl mb-16">
+                <p class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-2">04 / Layout &amp; Spacing</p>
+                <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">Grid &amp; Spacing Patterns</h2>
+                <p class="text-neutral-400">Canonical structures showcasing responsive columns, layout paddings and grids used in the reference template.</p>
+            </div>
+
+            <!-- Grid 1: Split Columns (About layout) -->
+            <div class="mb-12">
+                <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Pattern A: Split Column Grid (2-Column Info &amp; Image)</p>
+                <div class="p-6 rounded-xl border border-white/5 bg-neutral-925">
+                    <div class="grid md:grid-cols-2 gap-12 items-center text-left">
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-semibold text-white">More than just a haircut.</h3>
+                            <p class="text-sm text-neutral-400 leading-relaxed">
+                                At Empire Barbershop, we believe that a haircut is the foundation of a man's confidence. Located in the heart of Tallaght, we have built a reputation for excellence.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
+                                <div>
+                                    <h4 class="text-white font-medium text-sm">Expert Team</h4>
+                                    <p class="text-xs text-neutral-500 mt-1">Professional barbers with years of experience.</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-medium text-sm">Local Focus</h4>
+                                    <p class="text-xs text-neutral-500 mt-1">Serving Tallaght and Dublin D24.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="aspect-[4/3] rounded-lg bg-neutral-900 border border-white/5 flex items-center justify-center text-xs text-neutral-500 uppercase tracking-widest">
+                            Image Container [Aspect-Square/4:3]
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid 2: 3-Column Service Grid -->
+            <div>
+                <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Pattern B: Service Card Grid (3-Column Grid with spanning layout)</p>
+                <div class="p-6 rounded-xl border border-white/5 bg-neutral-925">
+                    <div class="grid md:grid-cols-3 gap-6 text-left">
+                        <div class="p-6 rounded bg-neutral-950 border border-white/5 text-xs text-neutral-500 flex flex-col justify-between h-32">
+                            <span>Col 1</span>
+                            <span class="text-white font-medium text-sm">Standard Service</span>
+                        </div>
+                        <div class="p-6 rounded bg-neutral-950 border border-white/5 text-xs text-neutral-500 flex flex-col justify-between h-32">
+                            <span>Col 2</span>
+                            <span class="text-white font-medium text-sm">Standard Service</span>
+                        </div>
+                        <div class="p-6 rounded bg-neutral-950 border border-white/5 text-xs text-neutral-500 flex flex-col justify-between h-32">
+                            <span>Col 3</span>
+                            <span class="text-white font-medium text-sm">Standard Service</span>
+                        </div>
+                        <div class="p-6 rounded bg-neutral-950 border border-white/5 text-xs text-neutral-500 md:col-span-2 flex flex-col justify-between h-32">
+                            <span>Col Spanning (md:col-span-2)</span>
+                            <span class="text-white font-medium text-sm">Empire Premium Package</span>
+                        </div>
+                        <div class="p-6 rounded bg-neutral-950 border border-white/5 text-xs text-neutral-500 flex flex-col justify-between h-32">
+                            <span>Col 3 (Subrow)</span>
+                            <span class="text-white font-medium text-sm">Additional Service</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5) Motion & Interaction Section -->
+    <section id="motion" class="bg-neutral-925 py-24 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-2xl mb-16">
+                <p class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-2">05 / Motion &amp; Interaction</p>
+                <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">Motion &amp; Micro-Animations</h2>
+                <p class="text-neutral-400">Interactive gallery showing state transitions, scales and hover glows extracted from the landing design system.</p>
+            </div>
+
+            <!-- Motion Gallery -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <!-- Animation A: Image Zoom on Hover -->
+                <div class="bg-neutral-950 border border-white/5 rounded-xl overflow-hidden group">
+                    <div class="relative h-48 bg-neutral-800 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1590540179852-2110a54f813a?w=600&amp;q=80" alt="Micro transition demo" class="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-105">
+                        <div class="absolute inset-0 bg-neutral-950/40 flex items-center justify-center">
+                            <span class="text-white font-medium bg-black/40 px-3 py-1 rounded text-xs backdrop-blur-sm">Hover to Zoom</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-white font-medium text-sm">Smooth Image Zoom</p>
+                        <p class="text-neutral-500 text-xs mt-1">Class: <span class="text-neutral-400 font-mono">transition-transform duration-700 ease-out group-hover:scale-105</span></p>
+                    </div>
+                </div>
+
+                <!-- Animation B: Button Scale & Background Glow -->
+                <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between h-64">
+                    <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Button Scale Transition</p>
+                    <div class="flex items-center justify-center">
+                        <a href="#" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded bg-white px-8 font-medium text-neutral-950 transition-all duration-300 hover:bg-neutral-200 hover:scale-[1.02]">
+                            <span class="mr-2">Hover Over Me</span>
+                            <iconify-icon icon="lucide:arrow-right" width="18" height="18" class="transition-transform group-hover:translate-x-1" stroke-width="1.5"></iconify-icon>
+                        </a>
+                    </div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Scale &amp; Move Transition</p>
+                        <p class="text-neutral-500 text-xs mt-1">Class: <span class="text-neutral-400 font-mono">transition-all duration-300 hover:scale-[1.02] + group-hover:translate-x-1</span></p>
+                    </div>
+                </div>
+
+                <!-- Animation C: Card Border Transition -->
+                <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between h-64 group hover:border-white/20 transition-all duration-300 cursor-pointer">
+                    <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Card Border highlight</p>
+                    <div class="border border-white/5 rounded p-4 text-center text-xs text-neutral-500 group-hover:text-white group-hover:border-white/10 transition-colors">
+                        Card Inner Glow Active
+                    </div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Container Border Transition</p>
+                        <p class="text-neutral-500 text-xs mt-1">Class: <span class="text-neutral-400 font-mono">border-white/5 hover:border-white/20 transition-all duration-300</span></p>
+                    </div>
+                </div>
+
+                <!-- Animation D: Logo Greyscale Transition -->
+                <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between h-64">
+                    <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Metric Logo Highlight</p>
+                    <div class="flex items-center justify-center p-4 bg-neutral-900 rounded border border-white/5">
+                        <div class="flex items-center gap-8 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer">
+                            <span class="text-base font-bold tracking-tight text-white">DUBLIN<span class="font-light">CUTS</span></span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Filter &amp; Opacity Animation</p>
+                        <p class="text-neutral-500 text-xs mt-1">Class: <span class="text-neutral-400 font-mono">opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500</span></p>
+                    </div>
+                </div>
+
+                <!-- Animation E: Social Media Highlight -->
+                <div class="bg-neutral-950 border border-white/5 p-6 rounded-xl flex flex-col justify-between h-64">
+                    <p class="text-neutral-500 text-xs uppercase tracking-wider mb-4">Social Icon Transition</p>
+                    <div class="flex items-center justify-center gap-4 py-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/5 bg-neutral-900 flex items-center justify-center text-neutral-400 hover:text-white hover:border-white/25 transition-all duration-300">
+                            <iconify-icon icon="lucide:instagram" width="18" height="18" stroke-width="1.5"></iconify-icon>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/5 bg-neutral-900 flex items-center justify-center text-neutral-400 hover:text-white hover:border-white/25 transition-all duration-300">
+                            <iconify-icon icon="lucide:facebook" width="18" height="18" stroke-width="1.5"></iconify-icon>
+                        </a>
+                    </div>
+                    <div>
+                        <p class="text-white font-medium text-sm">Circular Icon Hover</p>
+                        <p class="text-neutral-500 text-xs mt-1">Class: <span class="text-neutral-400 font-mono">text-neutral-400 hover:text-white hover:border-white/25 transition-all</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6) Icons Section -->
+    <section id="icons" class="bg-neutral-950 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-2xl mb-16">
+                <p class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-2">06 / Iconography</p>
+                <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">Icon Set &amp; Sizes</h2>
+                <p class="text-neutral-400">Uses the Lucide icon library via Iconify. Showcases original sizes and color variations used in the templates.</p>
+            </div>
+
+            <!-- Icon Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 text-center">
+                <!-- Icon 1: Scissors -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:scissors" width="24" height="24" class="text-white" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:scissors</span>
+                </div>
+                <!-- Icon 2: Zap -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:zap" width="24" height="24" class="text-white" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:zap</span>
+                </div>
+                <!-- Icon 3: Shield -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:shield" width="24" height="24" class="text-white" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:shield</span>
+                </div>
+                <!-- Icon 4: Thermometer -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:thermometer" width="24" height="24" class="text-white" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:thermometer</span>
+                </div>
+                <!-- Icon 5: Crown -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:crown" width="24" height="24" class="text-white" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:crown</span>
+                </div>
+                <!-- Icon 6: Arrow Right -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:arrow-right" width="24" height="24" class="text-white" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:arrow-right</span>
+                </div>
+                <!-- Icon 7: Star -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:star" width="24" height="24" class="text-amber-400 fill-current" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:star</span>
+                </div>
+                <!-- Icon 8: Quote -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:quote" width="24" height="24" class="text-neutral-700" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:quote</span>
+                </div>
+                <!-- Icon 9: Map Pin -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:map-pin" width="24" height="24" class="text-neutral-400" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:map-pin</span>
+                </div>
+                <!-- Icon 10: Phone -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:phone" width="24" height="24" class="text-neutral-400" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:phone</span>
+                </div>
+                <!-- Icon 11: Instagram -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:instagram" width="24" height="24" class="text-neutral-400 hover:text-white transition-colors" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:instagram</span>
+                </div>
+                <!-- Icon 12: Check Circle -->
+                <div class="bg-neutral-900 border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center">
+                    <iconify-icon icon="lucide:check-circle" width="24" height="24" class="text-white" stroke-width="1.5"></iconify-icon>
+                    <span class="text-white text-xs mt-4 font-mono">lucide:check</span>
+                </div>
+            </div>
+
+            <!-- Size Swatch Hierarchy -->
+            <div class="mt-12 bg-neutral-925 border border-white/5 rounded-xl p-8">
+                <h3 class="text-lg font-semibold text-white mb-6 text-left">Icon Size Scale &amp; Implementations</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end text-left">
+                    <div>
+                        <div class="h-16 flex items-center justify-center border border-white/5 bg-neutral-950 rounded mb-2">
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="text-amber-400 fill-current"></iconify-icon>
+                        </div>
+                        <p class="text-white font-medium text-sm">Rating/Inline (16px)</p>
+                        <p class="text-neutral-500 font-mono text-xs mt-0.5">width="16" height="16"</p>
+                    </div>
+                    <div>
+                        <div class="h-16 flex items-center justify-center border border-white/5 bg-neutral-950 rounded mb-2">
+                            <iconify-icon icon="lucide:arrow-right" width="18" height="18" class="text-white"></iconify-icon>
+                        </div>
+                        <p class="text-white font-medium text-sm">Button Icon (18px)</p>
+                        <p class="text-neutral-500 font-mono text-xs mt-0.5">width="18" height="18"</p>
+                    </div>
+                    <div>
+                        <div class="h-16 flex items-center justify-center border border-white/5 bg-neutral-950 rounded mb-2">
+                            <iconify-icon icon="lucide:star" width="20" height="20" class="text-amber-400 fill-current"></iconify-icon>
+                        </div>
+                        <p class="text-white font-medium text-sm">Metric star (20px)</p>
+                        <p class="text-neutral-500 font-mono text-xs mt-0.5">width="20" height="20"</p>
+                    </div>
+                    <div>
+                        <div class="h-16 flex items-center justify-center border border-white/5 bg-neutral-950 rounded mb-2">
+                            <iconify-icon icon="lucide:scissors" width="24" height="24" class="text-white"></iconify-icon>
+                        </div>
+                        <p class="text-white font-medium text-sm">Component header (24px)</p>
+                        <p class="text-neutral-500 font-mono text-xs mt-0.5">width="24" height="24"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-950 border-t border-white/10 pt-16 pb-8 text-xs text-neutral-500">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-white font-semibold text-sm tracking-tighter mb-4">EMPIRE DESIGN SYSTEM</p>
+            <p>© 2026 Empire Barbershop Design System Showcase. Preserving the exact code, classes, components, layouts, typography, and assets.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

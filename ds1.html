@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html class="scroll-smooth overflow-x-hidden" lang="pt-br">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ds1.html | Design System & Biblioteca de Padrões Premium</title>
+    <meta content="Sistema de design premium ds1.html. Uma fusão criativa entre Bona Forma, Empire Barbershop e Teodoro & Decesaro, com paleta de cores corporativa jurídica de alto padrão." name="description"/>
+    
+    <!-- Fonts: Google Fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Webflow Stylesheet (Local copy) -->
+    <link href="assets/css/webflow.css" rel="stylesheet" type="text/css"/>
+    
+    <!-- Tailwind CSS (Local copy) -->
+    <script src="assets/js/tailwind.js"></script>
+    
+    <!-- Lucide Icons UMD (Local copy) -->
+    <script src="assets/js/lucide.min.js"></script>
+
+    <!-- FontAwesome 6 for Teodoro Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- GSAP for scroll animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Lora', 'serif'],
+                        display: ['Lora', 'serif'],
+                        serif: ['Lora', 'serif'],
+                        overlock: ['Lora', 'serif'],
+                        heebo: ['Lora', 'serif'],
+                        assistant: ['Lora', 'serif'],
+                        manrope: ['Lora', 'serif']
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#141414',      // Teodoro Fundo Primário
+                            panel: '#1A1A1A',     // Teodoro Fundo Secundário
+                            gold: '#B89161',      // Teodoro Acento Dourado
+                            goldlight: '#CDB18F', // Dourado Suave
+                            red: '#C43D3C',       // Teodoro Destaque Vermelho
+                            redhover: '#A32E2D',  // Vermelho Hover
+                            muted: '#7A7A7A',     // Teodoro Texto de Apoio
+                            border: '#1D1D1D',    // Teodoro Bordas
+                            white: '#FFFFFF',
+                            glass: 'rgba(26, 26, 26, 0.6)'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 12s linear infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Global CSS Custom Overrides -->
+    <style>
+        /* Custom scrollbar for premium theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #141414;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1A1A1A;
+            border: 2px solid #141414;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B89161;
+        }
+
+        body {
+            background-color: #141414;
+            color: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            font-family: 'Lora', serif;
+        }
+
+        /* --- Noise Grain Overlay --- */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            content: "";
+            opacity: 0.015;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* --- Premium Glassmorphism --- */
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(184, 145, 97, 0.08); /* Borda dourada sutil */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        .glass-panel:hover {
+            border-color: rgba(184, 145, 97, 0.2);
+            background: rgba(26, 26, 26, 0.75);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* --- Custom Trailing Cursor --- */
+        .custom-cursor-dot, .custom-cursor-ring {
+            transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s, transform 0.08s ease-out;
+            pointer-events: none;
+        }
+
+        /* --- Luxury Glow & Entry Animations --- */
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(55px);
+                filter: blur(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+        @keyframes fadeInSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-55px);
+                filter: blur(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+        @keyframes fadeInSlideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-55px);
+                filter: blur(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+                filter: blur(0);
+            }
+        }
+        @keyframes fadeInSlideRight {
+            from {
+                opacity: 0;
+                transform: translateX(55px);
+                filter: blur(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+                filter: blur(0);
+            }
+        }
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+                filter: blur(14px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
+            }
+        }
+        @keyframes glow-pulse {
+            0%, 100% { text-shadow: 0 0 10px rgba(184, 145, 97, 0.2), 0 0 20px rgba(184, 145, 97, 0.1); }
+            50% { text-shadow: 0 0 20px rgba(184, 145, 97, 0.5), 0 0 30px rgba(184, 145, 97, 0.2); }
+        }
+        @keyframes border-glow-pulse-gold {
+            0%, 100% { box-shadow: 0 0 10px rgba(184, 145, 97, 0.1); border-color: rgba(184, 145, 97, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(184, 145, 97, 0.25); border-color: rgba(184, 145, 97, 0.45); }
+        }
+        @keyframes border-glow-pulse-red {
+            0%, 100% { box-shadow: 0 0 10px rgba(196, 61, 60, 0.1); border-color: rgba(196, 61, 60, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(196, 61, 60, 0.25); border-color: rgba(196, 61, 60, 0.45); }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-fade-in-down {
+            animation: fadeInSlideDown 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-fade-in-left {
+            animation: fadeInSlideLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-fade-in-right {
+            animation: fadeInSlideRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-fade-in-scale {
+            animation: fadeInScaleUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-glow-gold {
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+        .animate-border-glow-gold {
+            animation: border-glow-pulse-gold 4s ease-in-out infinite;
+        }
+        .animate-border-glow-red {
+            animation: border-glow-pulse-red 4s ease-in-out infinite;
+        }
+
+        /* --- Scroll Entrance Reveals (Modified for Stagger & Directions) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px); /* default */
+            filter: blur(14px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-down { transform: translateY(-50px); }
+        .reveal-left { transform: translateX(-50px); }
+        .reveal-right { transform: translateX(50px); }
+        .reveal-scale { transform: scale(0.92); }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translate(0, 0) scale(1) !important;
+            filter: blur(0);
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(40px); /* default */
+            filter: blur(10px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-item-down { transform: translateY(-40px); }
+        .reveal-item-left { transform: translateX(-40px); }
+        .reveal-item-right { transform: translateX(40px); }
+        .reveal-item-scale { transform: scale(0.92); }
+
+        .reveal.active .reveal-item {
+            opacity: 1;
+            transform: translate(0, 0) scale(1) !important;
+            filter: blur(0);
+        }
+
+        .reveal-item:nth-child(1) { transition-delay: 0.1s; }
+        .reveal-item:nth-child(2) { transition-delay: 0.2s; }
+        .reveal-item:nth-child(3) { transition-delay: 0.3s; }
+        .reveal-item:nth-child(4) { transition-delay: 0.4s; }
+        .reveal-item:nth-child(5) { transition-delay: 0.5s; }
+        .reveal-item:nth-child(6) { transition-delay: 0.6s; }
+        .reveal-item:nth-child(7) { transition-delay: 0.7s; }
+        .reveal-item:nth-child(8) { transition-delay: 0.8s; }
+
+        /* --- Conic Border Animation for Buttons --- */
+        .conic-border-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1px;
+            overflow: hidden;
+            border-radius: 9999px;
+            transition: all 0.3s;
+        }
+        .conic-border-btn::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: conic-gradient(from 0deg, #141414, #B89161 40%, #CDB18F 60%, #141414);
+            animation: spin-conic 4s linear infinite;
+            z-index: 0;
+        }
+        .conic-border-btn-inner {
+            position: relative;
+            background: #1A1A1A;
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @keyframes spin-conic {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- Spline Background --- */
+        .spline-container iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* simulated states styling */
+        .simulated-focus:focus-within, .simulated-focus-active {
+            border-color: #B89161 !important;
+            box-shadow: 0 0 0 2px rgba(184, 145, 97, 0.25) !important;
+            outline: none !important;
+        }
+        .simulated-error {
+            border-color: #C43D3C !important;
+            box-shadow: 0 0 0 2px rgba(196, 61, 60, 0.25) !important;
+        }
+
+        /* Tooltip behavior */
+        .tooltip-container:hover .tooltip-element {
+            opacity: 1;
+            transform: translate(-50%, -8px);
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-brand-gold selection:text-brand-dark overflow-x-hidden antialiased">
+
+    <!-- Subtle Grain Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Custom Luxury Trailing Cursor (Desktop) -->
+    <div class="custom-cursor-dot fixed top-0 left-0 w-2 h-2 rounded-full bg-brand-gold pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 hidden lg:block"></div>
+    <div class="custom-cursor-ring fixed top-0 left-0 w-8 h-8 rounded-full border border-brand-red/40 pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 hidden lg:block"></div>
+
+    <!-- Dynamic HSL Background Blobs -->
+    <div class="fixed top-0 left-1/4 w-[400px] md:w-[700px] h-[500px] bg-brand-red/5 rounded-full blur-[120px] md:blur-[160px] -z-20 animate-pulse-slow"></div>
+    <div class="fixed bottom-10 right-10 w-[500px] h-[500px] bg-brand-gold/5 rounded-full blur-[140px] -z-20"></div>
+    <div class="fixed top-1/3 right-1/4 w-[300px] h-[300px] bg-brand-red/5 rounded-full blur-[100px] -z-20 animate-pulse-slow"></div>
+
+    <!-- Floating Pill Navigation Header -->
+    <div class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] lg:w-[800px] z-50">
+        <nav class="navbar-reveal transition-all duration-300 animate-fade-in-down opacity-0" style="animation-delay: 0.1s;">
+            <div class="glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-2xl">
+                <!-- Brand Logo -->
+                <a href="#hero" class="flex items-center space-x-2 group">
+                    <span class="font-serif text-base font-semibold text-white tracking-wide group-hover:text-brand-gold transition-colors duration-300">DS1 System</span>
+                </a>
+                
+                <!-- Desktop Links -->
+                <div class="hidden md:flex items-center space-x-6 text-[11px] font-semibold uppercase tracking-wider text-brand-muted">
+                    <a href="#typography" class="hover:text-white transition-colors duration-300">Tipografia</a>
+                    <a href="#colors" class="hover:text-white transition-colors duration-300">Cores</a>
+                    <a href="#components" class="hover:text-white transition-colors duration-300">Componentes</a>
+                    <a href="#icons" class="hover:text-white transition-colors duration-300">Ícones</a>
+                    <a href="#animations" class="hover:text-white transition-colors duration-300">Animações</a>
+                </div>
+
+                <!-- Action Button -->
+                <div>
+                    <a href="#components" class="conic-border-btn hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 shadow-[0_4px_15px_rgba(184,145,97,0.1)]">
+                        <span class="conic-border-btn-inner px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-white">
+                            Explorar Spec
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 1. DOBRA HERO (Demonstração de Capacidades) -->
+    <header id="hero" class="relative w-full min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden" style="background: radial-gradient(circle at 50% 0%, #1A1A1A 0%, #141414 70%);">
+        <!-- Glow Effect Blobs similar to Bona Forma -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-brand-gold/10 blur-[130px] rounded-full pointer-events-none z-0"></div>
+        <div class="absolute top-[20%] left-1/4 w-[350px] h-[350px] bg-brand-red/5 blur-[100px] rounded-full pointer-events-none z-0 animate-pulse-slow"></div>
+
+        <!-- Hero Content (Overlay) -->
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center mt-12 space-y-8 pointer-events-none">
+            <!-- Eyebrow Pill -->
+            <div class="hero-eyebrow opacity-0 animate-fade-in-down" style="animation-delay: 0.3s;">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-gold/20 bg-brand-panel/60 backdrop-blur-md">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-brand-gold"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-gold"></span>
+                    </span>
+                    <span class="text-[9px] font-bold text-brand-gold tracking-[0.25em] uppercase">NOVO DESIGN SYSTEM · DS1.HTML</span>
+                </div>
+            </div>
+
+            <!-- Title with gradient text -->
+            <div class="opacity-0 animate-fade-in-scale" style="animation-delay: 0.5s;">
+                <h1 class="hero-title text-4xl sm:text-6xl md:text-7xl font-serif text-white tracking-wide leading-tight animate-glow-gold">
+                    Estética refinada. <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-goldlight to-brand-gold">Performance imbatível.</span>
+                </h1>
+            </div>
+
+            <!-- Divider -->
+            <div class="hero-divider h-[1px] w-32 bg-gradient-to-r from-transparent via-brand-gold/60 to-transparent mx-auto opacity-0 animate-fade-in-left" style="animation-delay: 0.7s;"></div>
+
+            <!-- Subtitle -->
+            <p class="hero-subtitle text-sm md:text-base font-normal text-brand-muted max-w-xl mx-auto leading-relaxed tracking-wide opacity-0 animate-fade-in-right" style="animation-delay: 0.8s;">
+                O design system <strong class="text-white font-medium">ds1.html</strong> une a estrutura pragmática do Bona Forma com o dinamismo retrofuturista do Barbershop, sob a paleta sóbria e refinada de Teodoro & Decesaro.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="hero-cta pt-4 flex flex-col sm:flex-row gap-4 justify-center items-center pointer-events-auto opacity-0 animate-fade-in-up" style="animation-delay: 1.0s;">
+                <a href="#components" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-brand-red hover:bg-brand-redhover px-8 font-semibold text-xs uppercase tracking-wider text-white transition-all duration-300 hover:scale-[1.02] shadow-[0_4px_20px_rgba(196,61,60,0.3)]">
+                    <span class="mr-2">Ver Componentes</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                </a>
+                <a href="#typography" class="inline-flex h-12 items-center justify-center rounded-full border border-brand-gold/20 bg-brand-panel/40 hover:bg-brand-panel/80 backdrop-blur-sm px-8 font-semibold text-xs uppercase tracking-wider text-white transition-all duration-300">
+                    Especificação Tipográfica
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none z-10">
+            <div class="hero-indicator flex flex-col items-center gap-2 opacity-0 animate-fade-in-up" style="animation-delay: 1.2s;">
+                <span class="text-[8px] uppercase tracking-[0.25em] text-brand-muted font-bold">Rolar para explorar</span>
+                <div class="w-4 h-7 rounded-full border border-brand-border flex justify-center p-1">
+                    <div class="w-1 h-1.5 bg-brand-gold rounded-full animate-bounce"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-6 space-y-28 pb-32">
+
+        <!-- 2. TIPOGRAFIA (Typography Section) -->
+        <section id="typography" class="reveal reveal-left scroll-mt-24 space-y-12">
+            <div class="border-l-2 border-brand-gold pl-4 reveal-item reveal-item-left">
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">01 / Tipografia</p>
+                <h2 class="text-3xl font-serif text-white tracking-wide mt-1">Escala Tipográfica & Fontes</h2>
+                <p class="text-brand-muted text-sm max-w-xl mt-2">
+                    Estratégia integrada de carregamento via Google Fonts (CDN). Configuração com suporte exclusivo para a família Lora nos pesos Regular (400) e Bold (700).
+                </p>
+            </div>
+
+            <!-- Typography Spec Grid with Font Info Cards -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="glass-panel p-6 rounded-2xl space-y-3 reveal-item reveal-item-left">
+                    <h3 class="font-serif text-sm font-semibold text-white">Família de Fonte Única</h3>
+                    <ul class="text-xs text-brand-muted space-y-2">
+                        <li><strong class="text-white font-medium">Primária & Exclusiva:</strong> Lora, serif</li>
+                        <li><strong class="text-white font-medium">Pesos Permitidos:</strong> Regular (400) e Bold (700)</li>
+                        <li><strong class="text-white font-medium">Estilos:</strong> Normal apenas (sem itálicos)</li>
+                    </ul>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl space-y-3 reveal-item reveal-item-scale">
+                    <h3 class="font-serif text-sm font-semibold text-white">Estratégia de Carregamento</h3>
+                    <p class="text-xs text-brand-muted leading-relaxed">
+                        Fonte carregada dinamicamente via Google Fonts Link CDN otimizado no cabeçalho com suporte exclusivo aos pesos 400 (Regular) e 700 (Bold).
+                    </p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl space-y-3 reveal-item reveal-item-right">
+                    <h3 class="font-serif text-sm font-semibold text-white">Escala Geral</h3>
+                    <p class="text-xs text-brand-muted leading-relaxed">
+                        Escala harmônica h1 → h6 balanceada para telas de dispositivos móveis e desktop, utilizando exclusivamente a fonte Lora em toda a interface.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Typography Spec Table -->
+            <div class="glass-panel rounded-2xl overflow-hidden reveal-item reveal-item-up">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-brand-panel border-b border-brand-border text-white font-semibold">
+                                <th class="p-6 w-1/4">Função / Tag</th>
+                                <th class="p-6 w-1/2">Visualização (Live Preview)</th>
+                                <th class="p-6 w-1/4 text-right">Propriedades CSS</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-brand-border text-brand-muted">
+                            <!-- H1 Lora -->
+                            <tr class="hover:bg-brand-panel/20 transition-colors">
+                                <td class="p-6 font-semibold text-white">Heading 1 (Hero Title)</td>
+                                <td class="p-6">
+                                    <h1 class="font-serif text-3xl md:text-5xl font-bold text-white tracking-wide">Título Exclusivo Lora</h1>
+                                </td>
+                                <td class="p-6 text-right font-mono text-[10px] leading-relaxed">
+                                    font-family: Lora, serif;<br>
+                                    font-size: 48px (3rem);<br>
+                                    font-weight: 700 (Bold);<br>
+                                    line-height: 1.3em;<br>
+                                    letter-spacing: 0.025em;
+                                </td>
+                            </tr>
+                            <!-- H2 Lora -->
+                            <tr class="hover:bg-brand-panel/20 transition-colors">
+                                <td class="p-6 font-semibold text-white">Heading 2 (Seção)</td>
+                                <td class="p-6">
+                                    <h2 class="font-serif text-2xl md:text-3xl font-normal text-white tracking-normal">Subtítulo de Seção Elegante</h2>
+                                </td>
+                                <td class="p-6 text-right font-mono text-[10px] leading-relaxed">
+                                    font-family: Lora, serif;<br>
+                                    font-size: 30px (1.875rem);<br>
+                                    font-weight: 400 (Regular);<br>
+                                    line-height: 1.4em;
+                                </td>
+                            </tr>
+                            <!-- H3 Lora -->
+                            <tr class="hover:bg-brand-panel/20 transition-colors">
+                                <td class="p-6 font-semibold text-white">Heading 3 (Card Title)</td>
+                                <td class="p-6">
+                                    <h3 class="font-serif text-lg md:text-xl font-bold text-white">Título de Bloco / Card</h3>
+                                </td>
+                                <td class="p-6 text-right font-mono text-[10px] leading-relaxed">
+                                    font-family: Lora, serif;<br>
+                                    font-size: 20px (1.25rem);<br>
+                                    font-weight: 700 (Bold);<br>
+                                    line-height: 1.4em;
+                                </td>
+                            </tr>
+                            <!-- H4 Lora -->
+                            <tr class="hover:bg-brand-panel/20 transition-colors">
+                                <td class="p-6 font-semibold text-white">Heading 4 (Destaque)</td>
+                                <td class="p-6">
+                                    <h4 class="font-serif text-base md:text-lg font-bold text-brand-gold uppercase tracking-wider">Heading 4 Lora Gold</h4>
+                                </td>
+                                <td class="p-6 text-right font-mono text-[10px] leading-relaxed">
+                                    font-family: Lora, serif;<br>
+                                    font-size: 18px (1.125rem);<br>
+                                    font-weight: 700 (Bold);<br>
+                                    text-transform: uppercase;<br>
+                                    letter-spacing: 0.1em;
+                                </td>
+                            </tr>
+                            <!-- H5 Lora -->
+                            <tr class="hover:bg-brand-panel/20 transition-colors">
+                                <td class="p-6 font-semibold text-white">Heading 5 (Badge/Label)</td>
+                                <td class="p-6">
+                                    <h5 class="font-serif text-sm font-bold text-white uppercase tracking-wider">Heading 5 Dourado</h5>
+                                </td>
+                                <td class="p-6 text-right font-mono text-[10px] leading-relaxed">
+                                    font-family: Lora, serif;<br>
+                                    font-size: 14px (0.875rem);<br>
+                                    font-weight: 700 (Bold);<br>
+                                    text-transform: uppercase;<br>
+                                    letter-spacing: 0.05em;
+                                </td>
+                            </tr>
+                            <!-- H6 Lora -->
+                            <tr class="hover:bg-brand-panel/20 transition-colors">
+                                <td class="p-6 font-semibold text-white">Heading 6 (Helper)</td>
+                                <td class="p-6">
+                                    <h6 class="font-serif text-xs font-bold text-brand-gold uppercase tracking-widest">Heading 6 Lora Label</h6>
+                                </td>
+                                <td class="p-6 text-right font-mono text-[10px] leading-relaxed">
+                                    font-family: Lora, serif;<br>
+                                    font-size: 12px (0.75rem);<br>
+                                    font-weight: 700 (Bold);<br>
+                                    text-transform: uppercase;<br>
+                                    letter-spacing: 0.1em;
+                                </td>
+                            </tr>
+                            <!-- Body Large Lora -->
+                            <tr class="hover:bg-brand-panel/20 transition-colors">
+                                <td class="p-6 font-semibold text-white">Body Large (Destaques)</td>
+                                <td class="p-6">
+                                    <p class="font-serif text-base md:text-lg text-brand-white font-normal">Este é um parágrafo destacado com Lora Regular.</p>
+                                </td>
+                                <td class="p-6 text-right font-mono text-[10px] leading-relaxed">
+                                    font-family: Lora, serif;<br>
+                                    font-size: 18px (1.125rem);<br>
+                                    font-weight: 400 (Regular);<br>
+                                    line-height: 1.6;
+                                </td>
+                            </tr>
+                            <!-- Body Default Lora -->
+                            <tr class="hover:bg-brand-panel/20 transition-colors">
+                                <td class="p-6 font-semibold text-white">Body Default (Texto Base)</td>
+                                <td class="p-6">
+                                    <p class="font-serif text-sm md:text-base text-brand-muted font-normal leading-relaxed">O texto corrido utiliza Lora Regular para garantir legibilidade ideal em telas de alta densidade.</p>
+                                </td>
+                                <td class="p-6 text-right font-mono text-[10px] leading-relaxed">
+                                    font-family: Lora, serif;<br>
+                                    font-size: 16px (1rem);<br>
+                                    font-weight: 400 (Regular);<br>
+                                    line-height: 1.625;
+                                </td>
+                            </tr>
+                            <!-- Body Small Lora -->
+                            <tr class="hover:bg-brand-panel/20 transition-colors">
+                                <td class="p-6 font-semibold text-white">Body Small / Caption</td>
+                                <td class="p-6">
+                                    <span class="font-serif text-xs text-brand-muted">Legendas de rodapé ou metadados técnicos</span>
+                                </td>
+                                <td class="p-6 text-right font-mono text-[10px] leading-relaxed">
+                                    font-family: Lora, serif;<br>
+                                    font-size: 12px (0.75rem);<br>
+                                    font-weight: 400 (Regular);<br>
+                                    line-height: 1.4;
+                                </td>
+                            </tr>
+                            <!-- Helper Text -->
+                            <tr class="hover:bg-brand-panel/20 transition-colors">
+                                <td class="p-6 font-semibold text-white">Helper Text</td>
+                                <td class="p-6">
+                                    <p class="font-serif text-xs text-brand-muted">Nota: Este campo é obrigatório.</p>
+                                </td>
+                                <td class="p-6 text-right font-mono text-[10px] leading-relaxed">
+                                    font-family: Lora, serif;<br>
+                                    font-size: 11px;<br>
+                                    font-weight: 400 (Regular);<br>
+                                    font-style: normal;
+                                </td>
+                            </tr>
+                            <!-- Label / Legenda -->
+                            <tr class="hover:bg-brand-panel/20 transition-colors">
+                                <td class="p-6 font-semibold text-white">Label de Campo</td>
+                                <td class="p-6">
+                                    <span class="font-serif text-[10px] font-bold uppercase tracking-widest text-brand-gold">Nome Completo</span>
+                                </td>
+                                <td class="p-6 text-right font-mono text-[10px] leading-relaxed">
+                                    font-family: Lora, serif;<br>
+                                    font-size: 10px;<br>
+                                    font-weight: 700 (Bold);<br>
+                                    text-transform: uppercase;<br>
+                                    letter-spacing: 0.1em;
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SISTEMA DE CORES (Colors Section) -->
+        <section id="colors" class="reveal reveal-right scroll-mt-24 space-y-12">
+            <div class="border-l-2 border-brand-gold pl-4 reveal-item reveal-item-left">
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">02 / Sistema de Cores</p>
+                <h2 class="text-3xl font-serif text-white tracking-wide mt-1">Paleta Cromática</h2>
+                <p class="text-brand-muted text-sm max-w-xl mt-2">
+                    Amostras de cores e superfícies retiradas de Teodoro & Decesaro. Contraste elevado e tons adequados para identidades visuais de luxo ou institucionais de alto padrão.
+                </p>
+            </div>
+
+            <!-- Swatches Grid with HEX, RGB, HSL -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Swatch 1: Primary BG -->
+                <div class="bg-brand-panel border border-brand-border p-5 rounded-xl flex flex-col justify-between h-52 reveal-item reveal-item-left">
+                    <div class="w-full h-12 rounded bg-[#141414] border border-brand-border"></div>
+                    <div class="space-y-1">
+                        <p class="text-white font-medium text-xs">Fundo Primário (Neutral Dark)</p>
+                        <p class="text-brand-muted font-mono text-[9px]">HEX: #141414</p>
+                        <p class="text-brand-muted font-mono text-[9px]">RGB: rgb(20, 20, 20)</p>
+                        <p class="text-brand-gold font-mono text-[9px]">HSL: hsl(0, 0%, 8%)</p>
+                        <span class="block text-[8px] text-brand-gold font-bold uppercase">Contraste AAA</span>
+                    </div>
+                </div>
+
+                <!-- Swatch 2: Secondary BG -->
+                <div class="bg-brand-panel border border-brand-border p-5 rounded-xl flex flex-col justify-between h-52 reveal-item reveal-item-down">
+                    <div class="w-full h-12 rounded bg-[#1A1A1A] border border-brand-border"></div>
+                    <div class="space-y-1">
+                        <p class="text-white font-medium text-xs">Fundo Secundário (Panel Dark)</p>
+                        <p class="text-brand-muted font-mono text-[9px]">HEX: #1A1A1A</p>
+                        <p class="text-brand-muted font-mono text-[9px]">RGB: rgb(26, 26, 26)</p>
+                        <p class="text-brand-gold font-mono text-[9px]">HSL: hsl(0, 0%, 10%)</p>
+                        <span class="block text-[8px] text-brand-gold font-bold uppercase">Contraste AAA</span>
+                    </div>
+                </div>
+
+                <!-- Swatch 3: Gold Accent -->
+                <div class="bg-brand-panel border border-brand-border p-5 rounded-xl flex flex-col justify-between h-52 reveal-item reveal-item-up">
+                    <div class="w-full h-12 rounded bg-[#B89161]"></div>
+                    <div class="space-y-1">
+                        <p class="text-white font-medium text-xs">Acento Dourado (Accent Gold)</p>
+                        <p class="text-brand-muted font-mono text-[9px]">HEX: #B89161</p>
+                        <p class="text-brand-muted font-mono text-[9px]">RGB: rgb(184, 145, 97)</p>
+                        <p class="text-brand-gold font-mono text-[9px]">HSL: hsl(34, 38%, 55%)</p>
+                        <span class="block text-[8px] text-brand-gold font-bold uppercase">Contraste AA (>18px)</span>
+                    </div>
+                </div>
+
+                <!-- Swatch 4: Red Highlight -->
+                <div class="bg-brand-panel border border-brand-border p-5 rounded-xl flex flex-col justify-between h-52 reveal-item reveal-item-right">
+                    <div class="w-full h-12 rounded bg-[#C43D3C]"></div>
+                    <div class="space-y-1">
+                        <p class="text-white font-medium text-xs">Destaque Vermelho (Action Red)</p>
+                        <p class="text-brand-muted font-mono text-[9px]">HEX: #C43D3C</p>
+                        <p class="text-brand-muted font-mono text-[9px]">RGB: rgb(196, 61, 60)</p>
+                        <p class="text-brand-gold font-mono text-[9px]">HSL: hsl(0, 52%, 50%)</p>
+                        <span class="block text-[8px] text-brand-gold font-bold uppercase">Contraste AA (>14px)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contextual Rules & Roles Specification -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Semantic Roles -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4 reveal-item reveal-item-left">
+                    <h3 class="font-serif text-sm font-semibold text-white">Papéis Semânticos</h3>
+                    <ul class="text-xs text-brand-muted space-y-2 leading-relaxed">
+                        <li><strong class="text-white font-medium">Primary:</strong> `#141414` - Fundo escuro uniforme de base.</li>
+                        <li><strong class="text-white font-medium">Secondary:</strong> `#1A1A1A` - Blocos de conteúdo, cards e painéis.</li>
+                        <li><strong class="text-white font-medium">Accent:</strong> `#B89161` - Chamadas pontuais, divisores de ênfase, hover links.</li>
+                        <li><strong class="text-white font-medium">Feedback:</strong> `#C43D3C` - Botões principais (CTAs) e alertas de validação.</li>
+                        <li><strong class="text-white font-medium">Decorative:</strong> Halos de iluminação suaves em glows HSL de baixa opacidade.</li>
+                    </ul>
+                </div>
+
+                <!-- Opacity Variants -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4 reveal-item reveal-item-scale">
+                    <h3 class="font-serif text-sm font-semibold text-white">Variantes de Opacidade</h3>
+                    <ul class="text-xs text-brand-muted space-y-2 leading-relaxed">
+                        <li><strong class="text-white font-medium">5% Opacity:</strong> Bordas internas finas e divisores sutis em grids de tabelas.</li>
+                        <li><strong class="text-white font-medium">10% Opacity:</strong> Puffs/Glows de fundo e halos decorativos atrás de mockups.</li>
+                        <li><strong class="text-white font-medium">40% Opacity:</strong> Painéis flutuantes translúcidos no hero e cabeçalhos.</li>
+                        <li><strong class="text-white font-medium">65% Opacity:</strong> Fundos com backdrop-blur integrando com as animações.</li>
+                    </ul>
+                </div>
+
+                <!-- Contextual Usage Rules -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4 reveal-item reveal-item-right">
+                    <h3 class="font-serif text-sm font-semibold text-white">Regras de Uso Contextual</h3>
+                    <ul class="text-xs text-brand-muted space-y-2 leading-relaxed">
+                        <li><strong class="text-white font-medium">Texto:</strong> Branco para contraste máximo; dourado para títulos e tags; cinza médio (#7A7A7A) para texto descritivo.</li>
+                        <li><strong class="text-white font-medium">Bordas:</strong> Empregar a cor `#1D1D1D` por padrão, evitando linhas puramente brancas ou cinzas brilhantes.</li>
+                        <li><strong class="text-white font-medium">Hover & Active:</strong> Transicionar botões de opacidade / preenchimento linear com timing de 0.3s.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Gradients & Opacity Variants -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-panel p-6 rounded-2xl space-y-4 reveal-item reveal-item-left">
+                    <h3 class="font-serif text-sm font-semibold text-white">Gradientes de Destaque</h3>
+                    <div class="space-y-3">
+                        <div class="h-12 w-full rounded-lg bg-gradient-to-r from-brand-gold/10 to-brand-gold/40 border border-brand-gold/25 flex items-center px-4 justify-between">
+                            <span class="text-[10px] font-mono text-brand-muted">from-brand-gold/10 to-brand-gold/40</span>
+                            <span class="text-[9px] font-bold uppercase text-brand-gold">Dourado Degradê</span>
+                        </div>
+                        <div class="h-12 w-full rounded-lg bg-gradient-to-r from-brand-red/10 to-brand-red/40 border border-brand-red/25 flex items-center px-4 justify-between">
+                            <span class="text-[10px] font-mono text-brand-muted">from-brand-red/10 to-brand-red/40</span>
+                            <span class="text-[9px] font-bold uppercase text-brand-red">Vermelho Degradê</span>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-brand-muted leading-relaxed">
+                        Utilizados exclusivamente em variações do mesmo tom cromático (sem misturar tons distintos como dourado com vermelho) para manter a harmonia.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl space-y-4 reveal-item reveal-item-right">
+                    <h3 class="font-serif text-sm font-semibold text-white">Regras de Contraste e Acessibilidade</h3>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="p-3 bg-brand-dark border border-brand-border rounded-lg">
+                            <span class="block text-lg font-bold text-white">AA</span>
+                            <span class="text-[9px] text-brand-muted">Texto comum em fundo escuro</span>
+                        </div>
+                        <div class="p-3 bg-brand-dark border border-brand-border rounded-lg">
+                            <span class="block text-lg font-bold text-brand-gold">AAA</span>
+                            <span class="text-[9px] text-brand-muted">Títulos Lora em Dourado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. COMPONENTES UI (UI Components Showcase) -->
+        <section id="components" class="reveal reveal-left scroll-mt-24 space-y-12">
+            <div class="border-l-2 border-brand-gold pl-4 reveal-item reveal-item-left">
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">03 / Componentes de Interface</p>
+                <h2 class="text-3xl font-serif text-white tracking-wide mt-1">Biblioteca de Componentes Interativos</h2>
+                <p class="text-brand-muted text-sm max-w-xl mt-2">
+                    Elementos interativos encapsulados com estados reais e micro-animações.
+                </p>
+            </div>
+
+            <!-- Subsection: Buttons -->
+            <div class="space-y-6">
+                <h3 class="text-base font-serif font-semibold text-white border-b border-brand-border pb-2 reveal-item reveal-item-left">Botões & Ações</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Button Primary Red -->
+                    <div class="glass-panel p-6 rounded-xl flex flex-col justify-between h-44 reveal-item reveal-item-left">
+                        <span class="text-[9px] uppercase font-mono text-brand-muted">Botão Principal Vermelho</span>
+                        <button class="w-full bg-brand-red hover:bg-brand-redhover text-white text-[11px] font-bold uppercase tracking-wider py-3.5 rounded-full transition-all duration-300 shadow-[0_4px_15px_rgba(196,61,60,0.2)]">
+                            Saiba Mais
+                        </button>
+                        <p class="text-[10px] text-brand-muted">Fundo sólido vermelho, transição linear rápida de 0.3s.</p>
+                    </div>
+
+                    <!-- Button Secondary Glass Gold -->
+                    <div class="glass-panel p-6 rounded-xl flex flex-col justify-between h-44 reveal-item reveal-item-up">
+                        <span class="text-[9px] uppercase font-mono text-brand-muted">Botão Secundário Gold</span>
+                        <button class="w-full border border-brand-gold/30 hover:border-brand-gold bg-brand-panel/40 hover:bg-brand-panel/90 text-brand-gold hover:text-white text-[11px] font-bold uppercase tracking-wider py-3.5 rounded-full transition-all duration-300">
+                            Falar com Advogado
+                        </button>
+                        <p class="text-[10px] text-brand-muted">Transparente com borda dourada, preenchimento no hover.</p>
+                    </div>
+
+                    <!-- Conic Spinning Border Navbar style -->
+                    <div class="glass-panel p-6 rounded-xl flex flex-col justify-between h-44 reveal-item reveal-item-down">
+                        <span class="text-[9px] uppercase font-mono text-brand-muted">Borda Rotativa (Conic)</span>
+                        <div class="conic-border-btn w-full h-11 hover:scale-[1.02] cursor-pointer">
+                            <span class="conic-border-btn-inner text-[10px] font-bold uppercase tracking-wider text-white">
+                                Adquirir Obra
+                            </span>
+                        </div>
+                        <p class="text-[10px] text-brand-muted">Glow rotativo gerado por gradiente cônico em CSS.</p>
+                    </div>
+
+                    <!-- Disabled State -->
+                    <div class="glass-panel p-6 rounded-xl flex flex-col justify-between h-44 reveal-item reveal-item-right">
+                        <span class="text-[9px] uppercase font-mono text-brand-muted">Estado Desabilitado</span>
+                        <button disabled class="w-full bg-brand-border text-brand-muted text-[11px] font-bold uppercase tracking-wider py-3.5 rounded-full opacity-50 cursor-not-allowed">
+                            Bloqueado
+                        </button>
+                        <p class="text-[10px] text-brand-muted">Opacidade reduzida, cursor desabilitado.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsection: Form Inputs -->
+            <div class="space-y-6">
+                <h3 class="text-base font-serif font-semibold text-white border-b border-brand-border pb-2 reveal-item reveal-item-left">Campos de Formulário</h3>
+                <div class="glass-panel p-6 md:p-8 rounded-2xl reveal-item reveal-item-scale">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Input Default -->
+                        <div class="space-y-2">
+                            <label class="text-[10px] uppercase tracking-wider text-brand-muted ml-1">Assunto / Tópico</label>
+                            <input class="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition-all duration-300 placeholder:text-brand-muted/50" placeholder="Ex: Divórcio Consensual" type="text" />
+                            <span class="block text-[9px] text-brand-muted">Estado padrão offline</span>
+                        </div>
+
+                        <!-- Input Active/Focus -->
+                        <div class="space-y-2">
+                            <label class="text-[10px] uppercase tracking-wider text-brand-gold ml-1">E-mail Corporativo</label>
+                            <div class="simulated-focus border border-brand-border rounded-lg bg-brand-dark transition-all duration-300">
+                                <input class="w-full bg-transparent border-0 px-4 py-3 text-sm text-white focus:outline-none placeholder:text-brand-muted/50" value="contato@empresa.com" type="email" />
+                            </div>
+                            <span class="block text-[9px] text-brand-gold">Simulação de Foco Ativo</span>
+                        </div>
+
+                        <!-- Input Error -->
+                        <div class="space-y-2">
+                            <label class="text-[10px] uppercase tracking-wider text-brand-red ml-1">Telefone / Whatsapp</label>
+                            <div class="simulated-error border rounded-lg bg-brand-dark transition-all duration-300">
+                                <input class="w-full bg-transparent border-0 px-4 py-3 text-sm text-white focus:outline-none" value="+55 (41) 9999-9" type="text" />
+                            </div>
+                            <span class="block text-[9px] text-brand-red">Telefone inválido ou incompleto.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsection: Cards Showcase -->
+            <div class="space-y-6">
+                <h3 class="text-base font-serif font-semibold text-white border-b border-brand-border pb-2 reveal-item reveal-item-right">Cards & Superfícies</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Service Card (Bona Forma & Barbershop Mix) -->
+                    <div class="group border border-brand-border hover:border-brand-gold/30 bg-brand-panel/30 hover:bg-brand-panel/85 p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between h-80 reveal-item reveal-item-left animate-border-glow-gold">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center mb-6 text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
+                                <i data-lucide="scale" class="w-5 h-5"></i>
+                            </div>
+                            <h4 class="font-serif text-lg text-white mb-2">Homologação de Divórcio</h4>
+                            <p class="text-brand-muted text-xs leading-relaxed">
+                                Processo ágil para homologação de divórcio proferido por tribunal estrangeiro perante o Superior Tribunal de Justiça.
+                            </p>
+                        </div>
+                        <span class="text-[10px] font-bold text-brand-gold uppercase tracking-wider mt-4">Consultar Especialista</span>
+                    </div>
+
+                    <!-- Testimonial Card with Popular Badge -->
+                    <div class="bg-brand-panel/50 border border-brand-border p-8 rounded-2xl flex flex-col justify-between relative h-80 reveal-item reveal-item-scale animate-border-glow-red">
+                        <span class="absolute top-6 right-6 px-2.5 py-0.5 rounded bg-brand-red text-[8px] text-white uppercase tracking-widest font-bold">Mais Solicitado</span>
+                        <div class="space-y-4">
+                            <div class="flex text-[#FBBF24] gap-0.5">
+                                <i class="fa-solid fa-star text-xs"></i>
+                                <i class="fa-solid fa-star text-xs"></i>
+                                <i class="fa-solid fa-star text-xs"></i>
+                                <i class="fa-solid fa-star text-xs"></i>
+                                <i class="fa-solid fa-star text-xs"></i>
+                            </div>
+                            <p class="text-brand-white text-xs leading-relaxed font-normal">
+                                "Atendimento impecável e grande competência no reconhecimento da minha decisão de guarda internacional no STJ."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold font-bold text-xs">A</div>
+                            <div>
+                                <p class="text-white text-xs font-semibold">Alberto N. Estevão</p>
+                                <p class="text-brand-muted text-[10px]">Cliente de Guarda Internacional</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Overlay Card (Hover Zoom) -->
+                    <div class="group relative rounded-2xl overflow-hidden border border-brand-border h-80 cursor-pointer reveal-item reveal-item-right">
+                        <!-- BG Image -->
+                        <img src="assets/foto-expert-fernanda.webp" alt="Fernanda Decesaro" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105 opacity-60 group-hover:opacity-85">
+                        
+                        <!-- Overlay gradient mask -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"></div>
+
+                        <!-- Card text content -->
+                        <div class="absolute bottom-6 left-6 right-6 text-left space-y-2">
+                            <span class="text-[9px] font-bold text-brand-gold uppercase tracking-widest">Autora da Obra</span>
+                            <h4 class="font-serif text-lg text-white font-medium">Dra. Fernanda Nelsen</h4>
+                            <p class="text-brand-muted text-xs font-normal">Advogada especialista em Direito de Família Internacional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsection: Modal & Tooltips & Badges -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Live Modal trigger component -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between h-56 reveal-item reveal-item-left">
+                    <div>
+                        <h4 class="text-xs font-semibold text-white uppercase tracking-wider mb-2">Modal Interativo</h4>
+                        <p class="text-brand-muted text-xs leading-relaxed">
+                            Acione a simulação de modal funcional para validar o overlay e o comportamento do Javascript.
+                        </p>
+                    </div>
+                    <button onclick="toggleModal(true)" class="w-full bg-brand-panel hover:bg-brand-border text-white border border-brand-gold/20 text-[10px] font-bold uppercase tracking-wider py-2.5 rounded-lg transition-colors">
+                        Abrir Modal Teste
+                    </button>
+                </div>
+
+                <!-- Live Tooltip demo -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between h-56 reveal-item reveal-item-scale">
+                    <div>
+                        <h4 class="text-xs font-semibold text-white uppercase tracking-wider mb-2">Tooltips Dinâmicos</h4>
+                        <p class="text-brand-muted text-xs leading-relaxed">
+                            Posicione o mouse sobre o elemento de ajuda abaixo para exibir as instruções contextuais ocultas.
+                        </p>
+                    </div>
+                    <div class="relative flex justify-center py-2">
+                        <div class="tooltip-container inline-block cursor-help bg-brand-panel border border-brand-border text-brand-gold font-mono text-xs px-4 py-2 rounded-full">
+                            Passe o mouse aqui (?)
+                            <!-- Tooltip bubble element -->
+                            <div class="tooltip-element opacity-0 pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-brand-dark border border-brand-gold/30 text-white text-[10px] p-3 rounded-lg shadow-xl text-center transition-all duration-300">
+                                <span class="block font-bold text-brand-gold mb-1">STJ Resolução 9/2005</span>
+                                Regula a homologação de sentenças estrangeiras e concessão de exequatur.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badges & Steps -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between h-56 reveal-item reveal-item-right">
+                    <div>
+                        <h4 class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Badges & Timeline Steps</h4>
+                        <div class="flex flex-wrap gap-2 items-center">
+                            <span class="text-brand-gold text-[9px] font-semibold bg-brand-gold/10 border border-brand-gold/20 px-2 py-0.5 rounded">Ativo STJ</span>
+                            <span class="text-brand-red text-[9px] font-semibold bg-brand-red/10 border border-brand-red/20 px-2 py-0.5 rounded">Prioridade</span>
+                            <span class="text-[10px] text-brand-gold font-mono flex items-center gap-1.5 ml-2">
+                                <span class="relative flex h-2.5 w-2.5">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-gold"></span>
+                                </span>
+                                LIVE
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 border-t border-brand-border pt-4">
+                        <div class="w-8 h-8 rounded-full border border-brand-gold/50 text-brand-gold flex items-center justify-center text-xs font-bold bg-brand-gold/10 shadow-[0_0_12px_rgba(184,145,97,0.3)]">1</div>
+                        <div class="flex-1 h-[1px] bg-brand-border"></div>
+                        <div class="w-8 h-8 rounded-full border border-brand-border text-brand-muted flex items-center justify-center text-xs font-bold bg-brand-panel">2</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ÍCONES (Icons Showcase) -->
+        <section id="icons" class="reveal reveal-scale scroll-mt-24 space-y-12">
+            <div class="border-l-2 border-brand-gold pl-4 reveal-item reveal-item-left">
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">04 / Sistema de Ícones</p>
+                <h2 class="text-3xl font-serif text-white tracking-wide mt-1">Biblioteca Visual de Ícones</h2>
+                <p class="text-brand-muted text-sm max-w-xl mt-2">
+                    Catálogo oficial que combina Lucide SVGs com FontAwesome corporativo jurídico.
+                </p>
+            </div>
+
+            <div class="bg-brand-panel/40 border border-brand-border rounded-2xl p-6 md:p-8 space-y-8 reveal-item reveal-item-scale">
+                <!-- Lucide Icons -->
+                <div>
+                    <h3 class="text-xs font-semibold uppercase tracking-wider text-brand-gold mb-4">Ícones Gerais (Lucide SVG)</h3>
+                    <div class="grid grid-cols-3 sm:grid-cols-6 gap-4">
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i data-lucide="scale" class="w-6 h-6 text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">lucide:scale</span>
+                        </div>
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i data-lucide="book-open" class="w-6 h-6 text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">lucide:book-open</span>
+                        </div>
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i data-lucide="globe" class="w-6 h-6 text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">lucide:globe</span>
+                        </div>
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i data-lucide="gavel" class="w-6 h-6 text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">lucide:gavel</span>
+                        </div>
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i data-lucide="file-check" class="w-6 h-6 text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">lucide:file-check</span>
+                        </div>
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i data-lucide="arrow-right" class="w-6 h-6 text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">lucide:arrow-right</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FontAwesome Icons -->
+                <div>
+                    <h3 class="text-xs font-semibold uppercase tracking-wider text-brand-gold mb-4">Ícones Jurídicos & Sociais (FontAwesome)</h3>
+                    <div class="grid grid-cols-3 sm:grid-cols-6 gap-4">
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i class="fa-solid fa-balance-scale text-xl text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">fa-balance-scale</span>
+                        </div>
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i class="fa-solid fa-landmark text-xl text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">fa-landmark</span>
+                        </div>
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i class="fa-solid fa-stamp text-xl text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">fa-stamp</span>
+                        </div>
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i class="fa-solid fa-envelope text-xl text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">fa-envelope</span>
+                        </div>
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i class="fa-brands fa-instagram text-xl text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">fa-instagram</span>
+                        </div>
+                        <div class="border border-brand-border bg-brand-dark p-4 rounded-xl flex flex-col items-center gap-2 text-center hover:border-brand-gold/30 transition-colors">
+                            <i class="fa-brands fa-linkedin-in text-xl text-brand-gold"></i>
+                            <span class="text-[9px] font-mono text-brand-muted">fa-linkedin-in</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. ANIMAÇÕES & MOVIMENTOS (Motion Section) -->
+        <section id="animations" class="reveal reveal-down scroll-mt-24 space-y-12">
+            <div class="border-l-2 border-brand-gold pl-4 reveal-item reveal-item-left">
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">05 / Movimentos & Animações</p>
+                <h2 class="text-3xl font-serif text-white tracking-wide mt-1">Efeitos Dinâmicos & Micro-interações</h2>
+                <p class="text-brand-muted text-sm max-w-xl mt-2">
+                    Visualização dos comportamentos cinéticos. Passe o mouse sobre os painéis para verificar a animação em tempo real.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Motion: Float -->
+                <div class="bg-brand-panel/30 border border-brand-border rounded-xl p-6 flex flex-col justify-between h-48 group reveal-item reveal-item-left">
+                    <div>
+                        <h4 class="text-xs font-semibold text-white mb-2">Efeito Float (Flutuante)</h4>
+                        <p class="text-[11px] text-brand-muted leading-relaxed">
+                            Simula oscilação vertical contínua para evitar composições estáticas.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-brand-border pt-4">
+                        <div class="w-6 h-6 bg-brand-gold rounded-full animate-float"></div>
+                        <span class="font-mono text-[9px] text-brand-muted">animate-float (6s)</span>
+                    </div>
+                </div>
+
+                <!-- Motion: Grayscale -->
+                <div class="bg-brand-panel/30 border border-brand-border rounded-xl p-6 flex flex-col justify-between h-48 group cursor-pointer reveal-item reveal-item-up">
+                    <div>
+                        <h4 class="text-xs font-semibold text-white mb-2">Grayscale to Color</h4>
+                        <p class="text-[11px] text-brand-muted leading-relaxed">
+                            Aplica filtro de escala de cinza e restaura a cor original suavemente sob hover.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-brand-border pt-4">
+                        <span class="font-serif text-sm font-semibold text-brand-gold opacity-45 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500">
+                            JURUÁ EDITORA
+                        </span>
+                        <span class="font-mono text-[9px] text-brand-muted">grayscale-0 (0.5s)</span>
+                    </div>
+                </div>
+
+                <!-- Motion: Card Border Glow -->
+                <div class="bg-brand-panel/30 border border-brand-border rounded-xl p-6 flex flex-col justify-between h-48 animate-border-glow-gold reveal-item reveal-item-down">
+                    <div>
+                        <h4 class="text-xs font-semibold text-white mb-2">Border Glow Pulse</h4>
+                        <p class="text-[11px] text-brand-muted leading-relaxed">
+                            Pulsação contínua da sombra de borda e cor baseada no tom dourado exclusivo Lora.
+                        </p>
+                    </div>
+                    <span class="font-mono text-[9px] text-brand-muted">animate-border-glow-gold (4s)</span>
+                </div>
+
+                <!-- Motion: Reveal Trigger & Red Glow -->
+                <div class="bg-brand-panel/30 border border-brand-border rounded-xl p-6 flex flex-col justify-between h-48 animate-border-glow-red reveal-item reveal-item-right">
+                    <div>
+                        <h4 class="text-xs font-semibold text-white mb-2">Scroll Reveal & Red Glow</h4>
+                        <p class="text-[11px] text-brand-muted leading-relaxed">
+                            Combina revelações por scroll com pulsação ativa de destaque em vermelho Teodoro.
+                        </p>
+                    </div>
+                    <span class="font-mono text-[9px] text-brand-muted">animate-border-glow-red (4s)</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SIMULATED MODAL COMPONENT (Hidden by default) -->
+    <div id="demo-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-brand-dark/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div class="glass-panel max-w-md w-[90%] p-8 rounded-2xl border border-brand-gold/30 text-left space-y-6 transform translate-y-4 transition-transform duration-300" id="demo-modal-body">
+            <div class="flex items-center justify-between">
+                <h3 class="font-serif text-xl text-white font-medium">Divórcio Internacional Homologado</h3>
+                <button onclick="toggleModal(false)" class="text-brand-muted hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <p class="text-xs text-brand-muted leading-relaxed">
+                Este é um exemplo de modal com design adaptado. Perfeito para listagens de requisitos formais, modelos de petição e avisos de confirmação de compra de livros.
+            </p>
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleModal(false)" class="flex-1 bg-brand-red hover:bg-brand-redhover text-white text-[10px] font-bold uppercase tracking-wider py-3 rounded-lg transition-colors">
+                    Confirmar
+                </button>
+                <button onclick="toggleModal(false)" class="flex-1 bg-brand-panel hover:bg-brand-border text-brand-muted hover:text-white border border-brand-border text-[10px] font-bold uppercase tracking-wider py-3 rounded-lg transition-colors">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-brand-border bg-brand-panel/20 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-left space-y-1">
+                <h4 class="font-serif text-sm font-semibold text-white">ds1.html Design System</h4>
+                <p class="text-[10px] text-brand-muted">Todos os direitos reservados. Landing Page da Dra. Fernanda Decesaro.</p>
+            </div>
+            <div class="flex space-x-6 text-[10px] font-semibold uppercase tracking-wider text-brand-muted">
+                <a href="#typography" class="hover:text-white transition-colors">Tipografia</a>
+                <a href="#colors" class="hover:text-white transition-colors">Cores</a>
+                <a href="#components" class="hover:text-white transition-colors">Componentes</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // 1. Smooth Scroll (Natively handled by CSS 'scroll-smooth' on <html>)
+
+        // 2. Custom Cursor Follow Logic
+        const cursorDot = document.querySelector('.custom-cursor-dot');
+        const cursorRing = document.querySelector('.custom-cursor-ring');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot movement
+            cursorDot.style.transform = `translate3d(${posX}px, ${posY}px, 0) translate3d(-50%, -50%, 0)`;
+
+            // Ring movement with slight delay
+            setTimeout(() => {
+                cursorRing.style.transform = `translate3d(${posX}px, ${posY}px, 0) translate3d(-50%, -50%, 0)`;
+            }, 50);
+        });
+
+        // 3. Modal Toggling
+        const modal = document.getElementById('demo-modal');
+        const modalBody = document.getElementById('demo-modal-body');
+
+        function toggleModal(show) {
+            if (show) {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modalBody.classList.remove('translate-y-4');
+                modalBody.classList.add('translate-y-0');
+            } else {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modalBody.classList.remove('translate-y-0');
+                modalBody.classList.add('translate-y-4');
+            }
+        }
+
+        // 4. Scroll reveals for each section and its inner elements using class triggers
+        gsap.registerPlugin(ScrollTrigger);
+
+        const sections = document.querySelectorAll('.reveal');
+        sections.forEach(section => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top 80%",
+                onEnter: () => {
+                    section.classList.add('active');
+                },
+                once: true
+            });
+        });
+    </script>
+</body>
+</html>
